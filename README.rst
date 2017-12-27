@@ -14,6 +14,7 @@ About
 
 Scabbard is a Pythonic client for the Sabre Dev Studio REST APIs.  With Scabbard, it
 is not necessary to create extensive low-level boilerplate code before you can use each API call.
+You can begin to make real REST calls to the Sabre Dev Studio APIs with only 3 lines of code (including the import).
 
 A scabbard is a sheath for holding a sword, such as a sabre :)
 
@@ -30,7 +31,7 @@ Example Usage
 -------------
 
 A file called api_connect_parameters.json must exist in the directory
-in which python is run, with your clientID and clientSecret credentials.
+in which python is run, with your Sabre Dev Studio clientID and clientSecret credentials.
 
 You can register for a free Sabre Dev Studio account at the following URL:
 https://developer.sabre.com/apps/mykeys
