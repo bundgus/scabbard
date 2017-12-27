@@ -1,0 +1,8 @@
+{
+  "clientId": "zzzzzzzzzzzzzzzz",
+  "clientSecret": "xxxxxxxx",
+  "environment": "https://api.test.sabre.com",
+  "group": "DEVCENTER",
+  "domain": "EXT",
+  "formatVersion": "V1"
+}
