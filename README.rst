@@ -12,19 +12,33 @@ Scabbard
 About
 -----
 
-Scabbard is a Pythonic wrapper around the Sabre Dev Studio REST APIs, so that it
-is not necessary to create extensive boilerplate code for authentication and each API call.
+Scabbard is a Pythonic wrapper around the Sabre Dev Studio REST APIs.  With Scabbard, it
+is not necessary to create extensive low-level boilerplate code before you can use each API call.
+
+A scabbard is a sheath for holding a sword, such as a sabre :)
+
+https://en.wikipedia.org/wiki/Scabbard
 
 
 Example Usage
 -------------
+.. code-block:: javascript
+
+    {
+      "userId": "wypjqvmrzr6c3k69",
+      "clientSecret": "0V6riKYm",
+      "environment": "https://api.test.sabre.com",
+      "group": "DEVCENTER",
+      "domain": "EXT",
+      "formatVersion": "V1"
+    }
+
 
 .. code-block:: Python
 
     from scabbard import get_client
 
     client = get_client()
-
     countries = client.Air_Utility.V1ListsSupportedCountriesGet(pointofsalecountry='NZ').result()
 
     print('PointOfSale')
