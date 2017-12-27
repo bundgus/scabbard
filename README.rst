@@ -19,17 +19,27 @@ A scabbard is a sheath for holding a sword, such as a sabre :)
 
 https://en.wikipedia.org/wiki/Scabbard
 
+Sabre Dev Studio REST API documentation:
+
+https://developer.sabre.com/docs/read/rest_apis/
+
+https://developer.sabre.com/io-docs
+
 
 Example Usage
 -------------
 
 A file called api_connect_parameters.json must exist in the directory
-in which python is run, with your userID and clientSecret credentials.
+in which python is run, with your clientID and clientSecret credentials.
+
+You can register for a free Sabre Dev Studio account at the following URL:
+https://developer.sabre.com/apps/mykeys
+
 
 .. code-block:: javascript
 
     {
-      "userId": "zzzzzzzzzzzzzzzz",
+      "clientId": "zzzzzzzzzzzzzzzz",
       "clientSecret": "xxxxxxxx",
       "environment": "https://api.test.sabre.com",
       "group": "DEVCENTER",

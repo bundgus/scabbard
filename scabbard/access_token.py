@@ -37,7 +37,7 @@ def get_token():
         with open('api_connection_parameters.json', 'r+') as cpf:
             config = json.loads(cpf.read())
         credentials = (config["formatVersion"] + ":"
-                       + config["userId"] + ":"
+                       + config["clientId"] + ":"
                        + config["group"] + ":"
                        + config["domain"])
         secret = b64(config["clientSecret"])
