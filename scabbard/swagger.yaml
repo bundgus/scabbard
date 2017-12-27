@@ -1,0 +1,106 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: Sabre Dev Studio REST APIs
+  description: "[Sabre Dev Studio](https://developer.sabre.com/io-docs) REST APIs."
+  license:
+    name: MIT
+    url: http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT
+host: api.test.sabre.com
+basePath: "/"
+securityDefinitions:
+  Authorization:
+    type: apiKey
+    description: ''
+    name: Authorization
+    in: header
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  "/v1/lists/supported/countries":
+    get:
+      description: Retrieves a list of origin and destination country codes that can
+        be used to filter applicable REST Air Shopping APIs.
+      summary: countries_lookup
+      tags:
+      - Air_Utility
+      operationId: V1ListsSupportedCountriesGet
+      produces:
+      - application/json
+      parameters:
+      - name: pointofsalecountry
+        in: query
+        required: false
+        type: string
+        description: 2-letter country code of the point of sale
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/Countries"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+definitions:
+  Countries:
+    title: Countries
+    type: object
+    properties:
+      PointOfSale:
+        description: ''
+        type: string
+      OriginCountries:
+        description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/OriginCountry"
+      DestinationCountries:
+        description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/DestinationCountry"
+      Links:
+        description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+  OriginCountry:
+    title: OriginCountry
+    type: object
+    properties:
+      CountryCode:
+        description: ''
+        type: string
+      CountryName:
+        description: ''
+        type: string
+  DestinationCountry:
+    title: DestinationCountry
+    type: object
+    properties:
+      CountryCode:
+        description: ''
+        type: string
+      CountryName:
+        description: ''
+        type: string
+  Link:
+    title: Link
+    type: object
+    properties:
+      rel:
+        description: ''
+        type: string
+      href:
+        description: ''
+        type: string
