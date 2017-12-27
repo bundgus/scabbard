@@ -27,7 +27,7 @@ https://developer.sabre.com/docs/read/rest_apis/
 https://developer.sabre.com/io-docs
 
 Scabbard docs:
-https://rawgit.com/bundgus/scabbard/master/docs/index.html
+TBD.
 
 Example Usage
 -------------
