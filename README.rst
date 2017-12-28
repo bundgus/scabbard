@@ -29,6 +29,9 @@ https://developer.sabre.com/io-docs
 Scabbard docs:
 https://bundgus.github.io/scabbard/
 
+Scabbard SwaggerUI:
+https://bundgus.github.io/scabbard/SwaggerUI/index.html
+
 GitHub Home:
 https://github.com/bundgus/scabbard
 
