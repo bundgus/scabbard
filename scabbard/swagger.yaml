@@ -444,6 +444,10 @@ paths:
       security:
       - Authorization: []
 
+# Utility
+  # Airline Alliance Lookup
+  # todo: Airline Alliance Lookup
+
 definitions:
 # Air Utility
   # Point of Sale Country Code Lookup
