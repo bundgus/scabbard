@@ -22,6 +22,57 @@ produces:
 - application/json
 
 paths:
+# Air Intelligence
+  # Low Fare Forecast
+  "/v1/forecast/flights/fares":
+    get:
+      summary: Low Fare Forecast
+      description: "Heads up – this API is powered by the Travel Insight Engine.
+      For the full list of city pairs available in the test environment and in
+      production view the City Pairs Supplemental API.
+      Forecasts the price range into which the lowest published fare is predicted to
+      fall within the next 7 days, and returns a recommendation to buy or wait."
+      tags:
+      - Air_Intelligence
+      operationId: V1ForecastFlightsFaresGet
+      produces:
+      - application/json
+      parameters:
+      - name: origin
+        in: query
+        required: true
+        type: string
+        description: 3-letter IATA code of the departure airport
+      - name: destination
+        in: query
+        required: true
+        type: string
+        description: 3-letter IATA code of the arrival airport
+      - name: departuredate
+        in: query
+        required: true
+        type: string
+        description: "Format: YYYY-MM-DD. Valid dates are a maximum of 60 future dates."
+      - name: returndate
+        in: query
+        required: true
+        type: string
+        description: "Format: YYYY-MM-DD. Valid dates are a maximum of 60 future dates."
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/LowFareForecast"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+
 # Air Utility
   # Point of Sale Country Code Lookup
   "/v1/lists/supported/pointofsalecountries":
@@ -446,9 +497,73 @@ paths:
 
 # Utility
   # Airline Alliance Lookup
-  # todo: Airline Alliance Lookup
+  "/v1/lists/utilities/airlines/alliances":
+    get:
+      summary: Airline Alliance Lookup
+      description: Retrieves a list of airline alliances and members.
+      tags:
+      - Utility
+      operationId: V1ListsUtilitiesAirlinesAlliancesGet
+      produces:
+      - application/json
+      parameters:
+      - name: alliancecode
+        in: query
+        required: false
+        type: string
+        description: "Comma separated list of 2-character airline alliance group codes.
+        Valid values: *A (Star Alliance), *O (oneworld), *S (SkyTeam). Retrieves a
+        list of airline alliances and members"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/AirlineAlliances"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
 definitions:
+# Air Intelligence
+  # Low Fare Forecast
+  LowFareForecast:
+    title: LowFareForecast
+    type: object
+    properties:
+      OriginLocation:
+        type: string
+      DestinationLocation:
+        type: string
+      DepartureDateTime:
+        type: string
+      ReturnDateTime:
+        type: string
+      Forecast:
+        type: object
+        properties:
+          HighestPredictedFare:
+            type: number
+          CurrencyCode:
+            type: string
+          LowestPredictedFare:
+            type: number
+      Recommendation:
+        type: string
+      LowestFare:
+        type: number
+      CurrencyCode:
+        type: string
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
 # Air Utility
   # Point of Sale Country Code Lookup
   Pointofsalecountries:
@@ -630,6 +745,22 @@ definitions:
         items:
           "$ref": "#/definitions/Link"
 
+# Utility
+  #Airline Alliance Lookup
+  AirlineAlliances:
+    title: AirlineAlliances
+    type: object
+    properties:
+      AllianceInfo:
+        type: array
+        items:
+          "$ref": "#/definitions/AirlineAlliance"
+      Links:
+        description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
 # Common
   Link:
     title: Link
@@ -728,3 +859,22 @@ definitions:
             type: string
           RegionName:
             type: string
+  AirlineAlliance:
+    title: AirlineAlliance
+    type: object
+    properties:
+      AllianceCode:
+        type: string
+      AllianceName:
+        type: string
+      AirlineInfo:
+        type: array
+        items:
+          type: object
+          properties:
+            AirlineCode:
+              type: string
+            Links:
+              type: array
+              items:
+                "$ref": "#/definitions/Link"

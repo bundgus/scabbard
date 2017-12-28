@@ -14,7 +14,7 @@ About
 
 Scabbard is a Pythonic client for the Sabre Dev Studio REST APIs.  With Scabbard, it
 is not necessary to create extensive low-level boilerplate code before you can use each API call.
-You can begin to make real REST calls to the Sabre Dev Studio APIs with only 3 lines of code (including the import).
+You can begin to interact with the Sabre Dev Studio APIs with as few as 3 lines of code (including the import).
 
 A scabbard is a sheath for holding a sword, such as a sabre :)
 
@@ -31,6 +31,9 @@ https://bundgus.github.io/scabbard/
 
 GitHub Home:
 https://github.com/bundgus/scabbard
+
+PyPi Home:
+https://pypi.python.org/pypi/scabbard
 
 
 Example Usage
