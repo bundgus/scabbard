@@ -53,7 +53,10 @@ paths:
       - Authorization: []
   "/v1/lists/supported/historical/seasonality/airports":
     get:
-      description: "Retrieves destinations supported by Travel Seasonality API.
+      description: "Heads up – this API is powered by the Travel Insight Engine.
+      For the full list of city pairs available in the test environment and in
+      production view the Travel Seasonality Airports Lookup Supplemental API.
+      Retrieves destinations supported by Travel Seasonality API.
       Destinations are airport codes or city codes."
       tags:
       - Air_Utility
@@ -114,6 +117,130 @@ paths:
           schema: {}
       security:
       - Authorization: []
+  "/v1/lists/supported/shop/flights/origins-destinations":
+    get:
+      description: "Retrieves city pairs supported by REST Air Shopping APIs. City pairs are combinations of origin and destination airport codes."
+      tags:
+      - Air_Utility
+      operationId: V1ListsSupportedShopFlightsOriginsdestinationsGet
+      produces:
+      - application/json
+      parameters:
+      - name: origincountry
+        in: query
+        required: false
+        type: string
+        description: 2-letter ISO country code
+      - name: destinationcountry
+        in: query
+        required: false
+        type: string
+        description: 2-letter ISO country code
+      - name: originregion
+        in: query
+        required: false
+        type: string
+        enum:
+            - Africa
+            - Asia Pacific
+            - Europe
+            - Latin America
+            - Middle East
+            - North America
+        description: Region
+      - name: destinationregion
+        in: query
+        required: false
+        type: string
+        enum:
+            - Africa
+            - Asia Pacific
+            - Europe
+            - Latin America
+            - Middle East
+            - North America
+        description: Region
+      - name: pointofsalecountry
+        in: query
+        required: false
+        type: string
+        description: 2-letter country code of the point of sale
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/CityPairOriginsdestinations"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+  "/v1/lists/supported/forecast/flights/origins-destinations":
+    get:
+      description: "Heads up – this API is powered by the Travel Insight Engine.
+      For the full list of city pairs available in the
+      test environment and in production view the City Pairs Supplemental API. .
+      Retrieves city pairs supported by Low Fare Forecast API.
+      City pairs are combinations of origin and destination airport codes."
+      tags:
+      - Air_Utility
+      operationId: V1ListsSupportedForecastFlightsOriginsdestinationsGet
+      produces:
+      - application/json
+      parameters:
+      - name: origincountry
+        in: query
+        required: false
+        type: string
+        description: 2-letter ISO country code
+      - name: destinationcountry
+        in: query
+        required: false
+        type: string
+        description: 2-letter ISO country code
+      - name: originregion
+        in: query
+        required: false
+        type: string
+        enum:
+            - Africa
+            - Asia Pacific
+            - Europe
+            - Latin America
+            - Middle East
+            - North America
+        description: Region
+      - name: destinationregion
+        in: query
+        required: false
+        type: string
+        enum:
+            - Africa
+            - Asia Pacific
+            - Europe
+            - Latin America
+            - Middle East
+            - North America
+        description: Region
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/CityPairOriginsdestinations"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+
 definitions:
   Pointofsalecountries:
     title: Pointofsalecountries
@@ -160,6 +287,18 @@ definitions:
           "$ref": "#/definitions/DestinationCountry"
       Links:
         description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+  CityPairOriginsdestinations:
+    title: CityPairOriginsdestinations
+    type: object
+    properties:
+      OriginDestinationLocations:
+        type: array
+        items:
+          "$ref": "#/definitions/CityPairs"
+      Links:
         type: array
         items:
           "$ref": "#/definitions/Link"
@@ -224,3 +363,39 @@ definitions:
       href:
         description: ''
         type: string
+  CityPairs:
+    title: CityPairs
+    type: object
+    properties:
+      OriginDestinationLocations:
+        type: string
+      OriginLocation:
+        type: object
+        properties:
+          AirportCode:
+            type: string
+          AirportName:
+            type: string
+          CityName:
+            type: string
+          CountryCode:
+            type: string
+          CountryName:
+            type: string
+          RegionName:
+            type: string
+      DestinationLocation:
+        type: object
+        properties:
+          AirportCode:
+            type: string
+          AirportName:
+            type: string
+          CityName:
+            type: string
+          CountryCode:
+            type: string
+          CountryName:
+            type: string
+          RegionName:
+            type: string
