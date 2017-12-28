@@ -362,6 +362,7 @@ paths:
       parameters:
         - in: path
           name: theme
+          description: 3-letter multi-airport city code
           type: string
           required: true
       responses:
@@ -369,6 +370,70 @@ paths:
           description: successful operation
           schema:
             "$ref": "#/definitions/ThemeAirport"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+
+  # Multi-Airport City Lookup
+  "/v1/lists/supported/cities":
+    get:
+      summary: Multi-Airport City Lookup
+      description: "Retrieves a list of city codes that are served by more than
+      one airport."
+      tags:
+      - Air_Utility
+      operationId: V1ListsSupportedCitiesGet
+      produces:
+      - application/json
+      parameters:
+      - name: country
+        in: query
+        required: true
+        type: string
+        description: 2-letter IATA country code
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/MultiAirportCities"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+
+  # Airports at Cities Lookup
+  "/v1/lists/supported/cities/{city}/airports":
+    get:
+      summary: Airports at Cities Lookup
+      description: "Retrieves a list of airport codes that serve the city in the request.
+      (Use Multi-Airport City Lookup to retrieve a list of city codes that can be used in
+      the request.)"
+      tags:
+      - Air_Utility
+      operationId: V1ListsSupportedCitiesCityAirportsGet
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: city
+          type: string
+          required: true
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/AirportsAtCity"
           examples: {}
         '400':
           description: Invalid status value
@@ -490,6 +555,72 @@ definitions:
               type: array
               items:
                 "$ref": "#/definitions/Link"
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+  # Multi-Airport City Lookup
+  MultiAirportCities:
+    title: MultiAirportCities
+    type: object
+    properties:
+      Cities:
+        type: array
+        items:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+            countryCode:
+              type: string
+            countryName:
+              type: string
+            regionName:
+              type: string
+            Links:
+              type: array
+              items:
+                "$ref": "#/definitions/Link"
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+  # Airports at Cities Lookup
+  AirportsAtCity:
+    title: AirportsAtCity
+    type: object
+    properties:
+      Airports:
+        type: array
+        items:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+      "Rail Stations":
+        type: array
+        items:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
+      Others:
+        type: array
+        items:
+          type: object
+          properties:
+            code:
+              type: string
+            name:
+              type: string
       Links:
         type: array
         items:
