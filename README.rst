@@ -32,10 +32,10 @@ https://bundgus.github.io/scabbard/
 Scabbard SwaggerUI:
 https://bundgus.github.io/scabbard/SwaggerUI/index.html
 
-GitHub Home:
+Scabbard GitHub Home:
 https://github.com/bundgus/scabbard
 
-PyPi Home:
+Scabbard PyPi Home:
 https://pypi.python.org/pypi/scabbard
 
 
@@ -63,9 +63,9 @@ https://developer.sabre.com/apps/mykeys
 
 .. code-block:: Python
 
-    from scabbard import get_client
+    import scabbard
 
-    client = get_client()
+    client = scabbard.get_client()
     countries = client.Air_Utility.V1ListsSupportedCountriesGet(pointofsalecountry='NZ').result()
 
     print('PointOfSale')

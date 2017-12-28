@@ -1,6 +1,6 @@
-from scabbard import get_client
+import scabbard
 
-client = get_client()
+client = scabbard.get_client()
 
 countries = client.Air_Utility.V1ListsSupportedCountriesGet(pointofsalecountry='NZ').result()
 
