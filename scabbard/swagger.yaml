@@ -688,7 +688,6 @@ definitions:
         type: string
       RegionName:
         type: string
-
   CityPairs:
     title: CityPairs
     type: object
