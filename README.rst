@@ -27,7 +27,11 @@ https://developer.sabre.com/docs/read/rest_apis/
 https://developer.sabre.com/io-docs
 
 Scabbard docs:
-TBD.
+https://bundgus.github.io/scabbard/
+
+GitHub Home:
+https://github.com/bundgus/scabbard
+
 
 Example Usage
 -------------
