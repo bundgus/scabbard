@@ -43,12 +43,10 @@ Getting Started
 -------------
 
 (1)
-
 You can register for a free Sabre Dev Studio account at the following URL:
 https://developer.sabre.com/apps/mykeys
 
 (2)
-
 Install the scabbard library with pip.
 
 .. code-block:: bash
@@ -56,7 +54,6 @@ Install the scabbard library with pip.
     $ pip install scabbard
 
 (3)
-
 A file called api_connect_parameters.json must exist in the directory
 in which python is run, with your Sabre Dev Studio clientID and clientSecret credentials.
 
@@ -75,7 +72,6 @@ api_connect_parameters.json
 
 
 (4)
-
 Run code to exercise the API.  For example:
 
 example_V1ListsSupportedCountriesGet.py
