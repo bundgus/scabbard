@@ -22,6 +22,70 @@ produces:
 - application/json
 
 paths:
+# Air Search
+  # todo: InstaFlights Search
+
+  # Lead Price Calendar
+  # todo: Lead Price Calendar
+  "/v2/shop/flights/fares":
+    get:
+      summary: Lead Price Calendar
+      description: "Heads up – this API is powered by the Travel Insight Engine.
+      For the full list of city pairs available in the test environment and in
+      production view the City Pairs Supplemental API.
+      Finds the lowest nonstop fare and the lowest overall fare on future dates of
+      travel."
+      tags:
+      - Air_Search
+      operationId: V2ShopFlightsFaresGet
+      produces:
+      - application/json
+      parameters:
+      - name: origin
+        in: query
+        required: true
+        type: string
+        description: 3-letter IATA code of the departure airport
+      - name: destination
+        in: query
+        required: true
+        type: string
+        description: 3-letter IATA code of the arrival airport
+      - name: lengthofstay
+        in: query
+        required: true
+        type: string
+        description: "Duration of trip (days). Values 0-16. Format : X,Y,Z. Max 5 values allowed."
+      - name: departuredate
+        in: query
+        required: false
+        type: string
+        description: "Date of departure, Format: YYYY-MM-DD"
+      - name: minfare
+        in: query
+        required: false
+        type: string
+        description: "Minimum overall lead fare"
+      - name: maxfare
+        in: query
+        required: false
+        type: string
+        description: "Maximum overall lead fare"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/LeadPriceCalendar"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+
 # Air Intelligence
   # Low Fare Forecast
   "/v1/forecast/flights/fares":
@@ -530,6 +594,25 @@ paths:
       - Authorization: []
 
 definitions:
+# Air Search
+  # Lead Price Calendar
+  LeadPriceCalendar:
+    title: LeadPriceCalendar
+    type: object
+    properties:
+      OriginLocation:
+        type: string
+      DestinationLocation:
+        type: string
+      FareInfo:
+        type: array
+        items:
+          "$ref": "#/definitions/FareInfo"
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
 # Air Intelligence
   # Low Fare Forecast
   LowFareForecast:
@@ -878,3 +961,35 @@ definitions:
               type: array
               items:
                 "$ref": "#/definitions/Link"
+  FareInfo:
+    title: FareInfo
+    type: object
+    properties:
+      LowestFare:
+        type: object
+        properties:
+          AirlineCodes:
+            type: array
+            items:
+              type: string
+          Fare:
+            type: number
+      CurrencyCode:
+        type: string
+      LowestNonStopFare:
+        type: object
+        properties:
+          AirlineCodes:
+            type: array
+            items:
+              type: string
+          Fare:
+            type: number
+      DepartureDateTime:
+        type: string
+      ReturnDateTime:
+        type: string
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
