@@ -104,9 +104,11 @@ example_V1ListsSupportedCountriesGet.py
         print(l.href)
 
 (5)
+Run your python example.
+
 .. code-block:: bash
 
-   $ python example_V1ListsSupportedCountriesGet.py
+    $ python example_V1ListsSupportedCountriesGet.py
 
 
 Installation
