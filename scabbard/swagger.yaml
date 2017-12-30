@@ -4,7 +4,7 @@ info:
   title: Scabbard - Sabre Dev Studio REST APIs
   description: "[Sabre Dev Studio](https://developer.sabre.com/io-docs) REST APIs."
   license:
-    name: Sabre
+    name: Sabre License
     url: https://developer.sabre.com/Terms_of_Use
 host: api.test.sabre.com
 basePath: "/"
