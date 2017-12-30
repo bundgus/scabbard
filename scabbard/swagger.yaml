@@ -110,7 +110,41 @@ paths:
   # todo: Seat Map (beta)
 
   # Flights To
-  # todo: Flights To
+  "/v1/shop/flights/cheapest/fares/{destination}":
+    get:
+      summary: Flights To
+      description: "Finds the 20 lowest published fares available for a given destination.
+      Destination is always required."
+      tags:
+      - Air_Search
+      operationId: V1ShopFlightsCheapestFaresDestinationGet
+      produces:
+      - application/json
+      parameters:
+        - in: path
+          name: destination
+          description: 3-letter IATA airport code or city code of the arrival airport
+          type: string
+          required: true
+        - in: query
+          name: pointofsalecountry
+          required: false
+          description: "2-letter country code of the point of sale"
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/FlightsTo"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
 # Air Intelligence
   # Low Fare Forecast
@@ -775,6 +809,44 @@ definitions:
         type: array
         items:
           "$ref": "#/definitions/FareInfo"
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+  # Flights To
+  FlightsTo:
+    title: FlightsTo
+    type: object
+    properties:
+      DestinationLocation:
+        type: string
+      FareInfo:
+        type: array
+        items:
+          type: object
+          properties:
+            CurrencyCode:
+              type: string
+            LowestFare:
+              type: object
+              properties:
+                AirlineCodes:
+                  type: array
+                  items:
+                    type: string
+                Fare:
+                  type: number
+                OriginLocation:
+                  type: string
+                DepartureDateTime:
+                  type: string
+                ReturnDateTime:
+                  type: string
+                Links:
+                  type: array
+                  items:
+                    "$ref": "#/definitions/Link"
       Links:
         type: array
         items:

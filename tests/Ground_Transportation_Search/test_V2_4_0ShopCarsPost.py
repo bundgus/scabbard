@@ -1,6 +1,7 @@
 from scabbard import get_client
 import json
 
+
 def test__v2_4_0_shop_cars_post():
     client = get_client()
 
