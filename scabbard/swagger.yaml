@@ -1048,6 +1048,7 @@ definitions:
     properties:
       # inconsistent.  sometimes this is an object sometimes just a string with 'N/A'
       # should this value just be omitted instead of changing the return schema?
+      # oneOf to be supported in OpenAPI 3.0
       #LowestFare:
       #  type: object
       #  properties:
@@ -1057,10 +1058,10 @@ definitions:
       #        type: string
       #    Fare:
       #      type: number
-      CurrencyCode:
-        type: string
+
       # inconsistent.  sometimes this is an object sometimes just a string with 'N/A'
       # should this value just be omitted instead of changing the return schema?
+      # oneOf to be supported in OpenAPI 3.0
       #LowestNonStopFare:
       #  type: object
       #  properties:
@@ -1070,6 +1071,9 @@ definitions:
       #        type: string
       #    Fare:
       #      type: number
+
+      CurrencyCode:
+        type: string
       DepartureDateTime:
         type: string
       ReturnDateTime:
