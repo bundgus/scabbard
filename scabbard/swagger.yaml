@@ -750,7 +750,37 @@ paths:
       - Authorization: []
 
   # Aircraft Equipment Lookup
-  # todo: Aircraft Equipment Lookup
+  "/v1/lists/utilities/aircraft/equipment":
+    get:
+      summary: Aircraft Equipment Lookup
+      description: "Retrieves a list of IATA aircraft equipment type codes and their
+      corresponding aircraft names."
+      tags:
+      - Utility
+      operationId: V1ListsUtilitiesAircraftEquipmentGet
+      produces:
+      - application/json
+      parameters:
+      - name: aircraftcode
+        in: query
+        required: false
+        type: string
+        description: "List of alphanumeric 3-character IATA aircraft equipment type code(s).
+        Format: XXX,YYY,ZZZ"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/AircraftEquipment"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Airline Lookup
   # todo: Airline Lookup
@@ -1335,6 +1365,26 @@ definitions:
         type: array
         items:
           "$ref": "#/definitions/AirlineAlliance"
+      Links:
+        description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+  # Aircraft Equipment Lookup
+  AircraftEquipment:
+    title: AircraftEquipment
+    type: object
+    properties:
+      AircraftInfo:
+        type: array
+        items:
+          type: object
+          properties:
+            AircraftCode:
+              type: string
+            AircraftName:
+              type: string
       Links:
         description: ''
         type: array
