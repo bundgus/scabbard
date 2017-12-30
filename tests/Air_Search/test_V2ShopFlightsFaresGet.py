@@ -8,6 +8,7 @@ def test_v2_shop_flights_fares_get():
         .V2ShopFlightsFaresGet(origin='JFK',
                                destination='LAX',
                                lengthofstay='5',
+                               pointofsalecountry='US'
                                )\
         .result()
-    assert 'USD' == fares['FareInfo'][0]['CurrencyCode']
+    assert 3 == len(fares['FareInfo'][0]['CurrencyCode'])

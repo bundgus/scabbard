@@ -23,10 +23,10 @@ produces:
 
 paths:
 # Air Search
+  # InstaFlights Search
   # todo: InstaFlights Search
 
   # Lead Price Calendar
-  # todo: Lead Price Calendar
   "/v2/shop/flights/fares":
     get:
       summary: Lead Price Calendar
@@ -71,6 +71,11 @@ paths:
         required: false
         type: string
         description: "Maximum overall lead fare"
+      - name: pointofsalecountry
+        in: query
+        required: false
+        type: string
+        description: "2-letter country code of the point of sale"
       responses:
         '200':
           description: successful operation
@@ -85,6 +90,27 @@ paths:
           schema: {}
       security:
       - Authorization: []
+
+  # Destination Finder
+  # todo: Destination Finder
+
+  # Bargain Finder Max
+  # todo: Bargain Finder Max
+
+  # Bargain Finder Max Alternate Airport Shop
+  # todo: Bargain Finder Max Alternate Airport Shop
+
+  # Bargain Finder Max Alternate Date
+  # todo: Bargain Finder Max Alternate Date
+
+  # Advanced Calendar
+  # todo: Advanced Calendar
+
+  # Seat Map (beta)
+  # todo: Seat Map (beta)
+
+  # Flights To
+  # todo: Flights To
 
 # Air Intelligence
   # Low Fare Forecast
@@ -136,6 +162,18 @@ paths:
           schema: {}
       security:
       - Authorization: []
+
+  # Fare Range
+  # todo: Fare Range
+
+  # Travel Seasonality
+  # todo: Travel Seasonality
+
+  # Top Destinations
+  # todo: Top Destinations
+
+  # Low Fare History
+  # todo: Low Fare History
 
 # Air Utility
   # Point of Sale Country Code Lookup
@@ -559,6 +597,9 @@ paths:
       security:
       - Authorization: []
 
+# Ground Transportation Search
+  # todo: Car Availability (beta)
+
 # Utility
   # Airline Alliance Lookup
   "/v1/lists/utilities/airlines/alliances":
@@ -592,6 +633,46 @@ paths:
           schema: {}
       security:
       - Authorization: []
+
+  # Aircraft Equipment Lookup
+  # todo: Aircraft Equipment Lookup
+
+  # Airline Lookup
+  # todo: Airline Lookup
+
+  # Geo Autocomplete (beta)
+  # todo: Geo Autocomplete (beta)
+
+  # Geo Code
+  # todo: Geo Code
+
+  # Response View Lookup
+  # todo: Response View Lookup
+
+  # Response View Details Lookup
+  # todo: Response View Details Lookup
+
+# Hotel
+  # Get Hotel Chain Info
+  # todo: Get Hotel Chain Info
+
+  # Get Hotel Content
+  # todo: Get Hotel Content
+
+  # Get Hotel Content Change
+  # todo: Get Hotel Content Change
+
+  # Get Hotel Descriptive Info
+  # todo: Get Hotel Descriptive Info
+
+  # Get Hotel Image
+  # todo: Get Hotel Image
+
+  # Get Hotel List
+  # todo: Get Hotel List
+
+  # Get Hotel Media
+  # todo: Get Hotel Media
 
 definitions:
 # Air Search
@@ -965,26 +1046,30 @@ definitions:
     title: FareInfo
     type: object
     properties:
-      LowestFare:
-        type: object
-        properties:
-          AirlineCodes:
-            type: array
-            items:
-              type: string
-          Fare:
-            type: number
+      # inconsistent.  sometimes this is an object sometimes just a string with 'N/A'
+      # should this value just be omitted instead of changing the return schema?
+      #LowestFare:
+      #  type: object
+      #  properties:
+      #    AirlineCodes:
+      #      type: array
+      #      items:
+      #        type: string
+      #    Fare:
+      #      type: number
       CurrencyCode:
         type: string
-      LowestNonStopFare:
-        type: object
-        properties:
-          AirlineCodes:
-            type: array
-            items:
-              type: string
-          Fare:
-            type: number
+      # inconsistent.  sometimes this is an object sometimes just a string with 'N/A'
+      # should this value just be omitted instead of changing the return schema?
+      #LowestNonStopFare:
+      #  type: object
+      #  properties:
+      #    AirlineCodes:
+      #      type: array
+      #      items:
+      #        type: string
+      #    Fare:
+      #      type: number
       DepartureDateTime:
         type: string
       ReturnDateTime:
