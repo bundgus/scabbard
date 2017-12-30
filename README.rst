@@ -106,6 +106,37 @@ Run your python example.
 
     $ python example_V1ListsSupportedCountriesGet.py
 
+    PointOfSale
+    NZ
+    OriginCountries
+    AU Australia
+    ID Indonesia
+    IE Ireland
+    NZ New Zealand
+    TH Thailand
+    GB United Kingdom
+    DestinationCountries
+    AU Australia
+    FR France
+    DE Germany
+    HK Hong Kong
+    IN India
+    ID Indonesia
+    IE Ireland
+    MY Malaysia
+    NL Netherlands
+    NZ New Zealand
+    PH Philippines
+    SG Singapore
+    TH Thailand
+    GB United Kingdom
+    US United States
+    Links
+    self
+    https://api.test.sabre.com/v1/lists/supported/countries?pointofsalecountry=NZ
+    linkTemplate
+    https://api.test.sabre.com/v1/lists/supported/countries?pointofsalecountry=<pointofsalecountry>
+
 
 Installation
 ------------
