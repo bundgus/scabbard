@@ -41,6 +41,7 @@ Getting Started
 
 (1)
 You can register for a free Sabre Dev Studio account at the following URL:
+
 https://developer.sabre.com/apps/mykeys
 
 (2)
