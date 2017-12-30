@@ -202,10 +202,42 @@ paths:
   # todo: Fare Range
 
   # Travel Seasonality
-  # todo: Travel Seasonality
+  "/v1/historical/flights/{destination}/seasonality":
+    get:
+      summary: Travel Seasonality
+      description: "Heads up – this API is powered by the Travel Insight Engine.
+      For the full list of city pairs available in the test environment and in
+      production view the City Pairs Supplemental API.
+      Returns a traffic volume rating to a destination airport for each of the next 52 weeks."
+      tags:
+      - Air_Intelligence
+      operationId: V1HistoricalFlightsDestinationSeasonalityGet
+      produces:
+      - application/json
+      parameters:
+      - name: destination
+        in: path
+        required: true
+        type: string
+        description: 3-letter IATA airport
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/TravelSeasonality"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Top Destinations
-  # todo: Top Destinations
+  # "No results were found"
+  # todo: Top Destinations (may not be working in test environment)
 
   # Low Fare History
   # todo: Low Fare History
@@ -882,6 +914,33 @@ definitions:
         type: number
       CurrencyCode:
         type: string
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+  # TravelSeasonality
+  TravelSeasonality:
+    title: TravelSeasonality
+    type: object
+    properties:
+      DestinationLocation:
+        type: string
+      Seasonality:
+        type: array
+        items:
+          type: object
+          properties:
+            WeekEndDate:
+              type: string
+            YearWeekNumber:
+              type: number
+            NumberOfObservations:
+              type: string
+            WeekStartDate:
+              type: string
+            SeasonalityIndicator:
+              type: string
       Links:
         type: array
         items:
