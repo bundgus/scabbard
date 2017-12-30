@@ -702,7 +702,6 @@ paths:
 
 # Hotel
   # Get Hotel Chain Info
-  # todo: Get Hotel Chain Info
   "/v1.0.0/shop/hotels/chain":
     post:
       summary: Get Hotel Chain Info
