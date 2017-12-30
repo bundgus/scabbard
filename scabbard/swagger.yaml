@@ -783,7 +783,35 @@ paths:
       - Authorization: []
 
   # Airline Lookup
-  # todo: Airline Lookup
+  "/v1/lists/utilities/airlines":
+    get:
+      summary: Airline Lookup
+      description: "Retrieves a list of IATA airline codes their corresponding airline names."
+      tags:
+      - Utility
+      operationId: V1ListsUtilitiesAirlinesGet
+      produces:
+      - application/json
+      parameters:
+      - name: airlinecode
+        in: query
+        required: false
+        type: string
+        description: "List of alphanumeric 2-character IATA airline code(s). Format: XX,YY,ZZ"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/AirlineLookup"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Geo Autocomplete (beta)
   # todo: Geo Autocomplete (beta)
@@ -1384,6 +1412,28 @@ definitions:
             AircraftCode:
               type: string
             AircraftName:
+              type: string
+      Links:
+        description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+  # Airline Lookup
+  AirlineLookup:
+    title: AirlineLookup
+    type: object
+    properties:
+      AirlineInfo:
+        type: array
+        items:
+          type: object
+          properties:
+            AirlineCode:
+              type: string
+            AirlineName:
+              type: string
+            AlternativeBusinessName:
               type: string
       Links:
         description: ''
