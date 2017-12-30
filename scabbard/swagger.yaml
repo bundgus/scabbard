@@ -759,7 +759,50 @@ paths:
   # todo: Geo Autocomplete (beta)
 
   # Geo Code
-  # todo: Geo Code
+  "/v1/lists/utilities/geocode/locations":
+    post:
+      summary: Geo Code
+      description: "Returns the geographic information of a given location."
+      tags:
+      - Utility
+      operationId: V1ListsUtilitiesGeocodeLocationsPost
+      produces:
+      - application/json
+      parameters:
+        - name: geocoderequest
+          in: body
+          required: true
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                GeoCodeRQ:
+                  type: object
+                  properties:
+                    PlaceById:
+                      type: object
+                      properties:
+                        Id:
+                          type: string
+                        BrowseCategory:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/GeoCode"
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Response View Lookup
   # todo: Response View Lookup
@@ -1292,6 +1335,50 @@ definitions:
         type: array
         items:
           "$ref": "#/definitions/AirlineAlliance"
+      Links:
+        description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+  # Geo Code
+  GeoCode:
+    title: GeoCode
+    type: object
+    properties:
+      Results:
+        type: array
+        items:
+          type: object
+          properties:
+            GeoCodeRS:
+              type: object
+              properties:
+                status:
+                  type: string
+                Place:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      confidenceFactor:
+                        type: string
+                      latitude:
+                        type: number
+                      longitude:
+                        type: number
+                      Name:
+                        type: string
+                      category:
+                        type: string
+                      Id:
+                        type: string
+                      City:
+                        type: string
+                      State:
+                        type: string
+                      Country:
+                        type: string
       Links:
         description: ''
         type: array
