@@ -18,5 +18,6 @@ def get_client():
 
     swagger_path = pkg_resources.resource_filename(resource_package, resource_path)
     return SwaggerClient.from_spec(load_file(swagger_path),
-                                   http_client=http_client)
-
+                                   http_client=http_client,
+                                   # config={'also_return_response': True}
+                                   )

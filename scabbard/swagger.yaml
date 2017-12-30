@@ -598,7 +598,6 @@ paths:
       - Authorization: []
 
 # Ground Transportation Search
-  # todo: Car Availability (beta)
   "/v2.4.0/shop/cars":
     post:
       summary: Ground Transportation Search
@@ -704,6 +703,45 @@ paths:
 # Hotel
   # Get Hotel Chain Info
   # todo: Get Hotel Chain Info
+  "/v1.0.0/shop/hotels/chain":
+    post:
+      summary: Get Hotel Chain Info
+      description: ""
+      tags:
+      - Hotel
+      operationId: V1_0_0ShopHotelsChainPost
+      produces:
+      - application/json
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "chain"
+            - "application/json"
+        - name: gethotelchaininforequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              GetHotelChainInfoRQ:
+                type: object
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/HotelChainInfo"
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Get Hotel Content
   # todo: Get Hotel Content
@@ -1123,6 +1161,50 @@ definitions:
         type: array
         items:
           "$ref": "#/definitions/AirlineAlliance"
+      Links:
+        description: ''
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+# Hotel
+  # Get Hotel Chain Info
+  HotelChainInfo:
+    title: AirlineAlliances
+    type: object
+    properties:
+      GetHotelChainInfoRS:
+        type: object
+        properties:
+          ApplicationResults:
+            type: object
+            properties:
+              Success:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    timeStamp:
+                      type: string
+          Marketers:
+            type: object
+            properties:
+              Code:
+                type: string
+              Name:
+                type: string
+              Chains:
+                type: object
+                properties:
+                  Chain:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        Code:
+                          type: string
+                        Name:
+                          type: string
       Links:
         description: ''
         type: array
