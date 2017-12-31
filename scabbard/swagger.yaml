@@ -1526,10 +1526,58 @@ paths:
       - Authorization: []
 
   # Response View Lookup
-  # todo: Response View Lookup
+  "/v1/lists/utilities/views":
+    get:
+      summary: Response View Lookup
+      description: "Retrieves a list of Sabre response views."
+      tags:
+      - Utility
+      operationId: V1ListsUtilitiesViewsGet
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+            # todo: define schema
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Response View Details Lookup
-  # todo: Response View Details Lookup
+  "/v1/lists/utilities/views/{view}":
+    get:
+      summary: Response View Details Lookup
+      description: "Retrieves the response paths that are associated with the view in the request.
+      (Use Response View Lookup to retrieve a list of views that can be used in the request.)"
+      tags:
+      - Utility
+      operationId: V1ListsUtilitiesViewsViewGet
+      parameters:
+        - in: path
+          name: view
+          type: string
+          required: true
+      produces:
+      - application/json
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+            # todo: define schema
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
 # Hotel
   # Get Hotel Chain Info
