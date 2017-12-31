@@ -428,7 +428,7 @@ paths:
       Response includes itinerary details and fare breakdown associated with each lead fare."
       tags:
       - Air_Search
-      operationId: V3_4_0ShopAltairportsPost
+      operationId: V3_4_0ShopAltairportsFlightsPost
       produces:
       - application/json
       parameters:
@@ -479,7 +479,62 @@ paths:
       - Authorization: []
 
   # Bargain Finder Max Alternate Date
-  # todo: Bargain Finder Max Alternate Date
+  "/v3.4.0/shop/altdates/flights":
+    post:
+      summary: Bargain Finder Max Alternate Airport Shop
+      description: "Finds the lowest available itineraries based upon
+      +/-1 or +/-3 alternate dates."
+      tags:
+      - Air_Search
+      operationId: V3_4_0ShopAltdatesFlightsPost
+      produces:
+      - application/json
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "live"
+        - name: limit
+          in: query
+          required: false
+          description: "The number of itineraries to retrieve per request"
+          type: string
+        - name: offset
+          in: query
+          required: false
+          description: "The starting position in the list of all itineraries
+          that meet the query criteria"
+          type: number
+        - name: view
+          in: query
+          required: false
+          description: "A Sabre response view definition"
+          type: string
+        - name: bargainfindermaxalternatedaterequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              EnhancedSeatMapRQ:
+                type: object
+                # todo: define schema
+      responses:
+        '200':
+          description: successful operation
+          # todo: define schema
+          schema: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Advanced Calendar
   # todo: Advanced Calendar - "This response version is deprecated and will be decommissioned once a newer version is released."

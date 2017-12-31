@@ -2,7 +2,7 @@ from scabbard import get_client
 import json
 
 
-def test__v3_4_0_shop_flights_post():
+def test__v3_4_0_shop_altairports_flights_post():
     client = get_client()
 
     j = json.loads('''{
@@ -66,10 +66,10 @@ def test__v3_4_0_shop_flights_post():
                     }''')
 
     itineraries = client.Air_Search\
-        .V3_4_0ShopAltairportsPost(bargainfindermaxalternateairportrequest=j,
-                                   mode='live',
-                                   limit='50',
-                                   offset=1
-                                   )\
+        .V3_4_0ShopAltairportsFlightsPost(bargainfindermaxalternateairportrequest=j,
+                                          mode='live',
+                                          limit='50',
+                                          offset=1
+                                          )\
         .result()
     assert '3.4.0' == itineraries['OTA_AirLowFareSearchRS']['Version']
