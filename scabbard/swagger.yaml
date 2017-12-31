@@ -1661,10 +1661,84 @@ paths:
       - Authorization: []
 
   # Get Hotel Content Change
-  # todo: Get Hotel Content Change
+  "/v1.0.0/shop/hotels/content/change":
+    post:
+      summary: Get Hotel Content Change
+      description: ""
+      tags:
+      - Hotel
+      operationId: V1_0_0ShopHotelsContentChangePost
+      produces:
+      - application/json
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "change"
+        - name: gethotelcontentchangerequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              GetHotelContentChangeRQ:
+                type: object
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+          # todo: define schema
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Get Hotel Descriptive Info
-  # todo: Get Hotel Descriptive Info
+  "/v1.0.0/shop/hotels/description":
+    post:
+      summary: Get Hotel Descriptive Info
+      description: ""
+      tags:
+      - Hotel
+      operationId: V1_0_0ShopHotelsDescriptionPost
+      produces:
+      - application/json
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "description"
+        - name: gethoteldescriptionrequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              GetHotelDescriptiveInfoRQ:
+                type: object
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+          # todo: define schema
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Get Hotel Image
   # todo: Get Hotel Image
