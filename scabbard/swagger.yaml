@@ -291,7 +291,7 @@ paths:
       - Authorization: []
 
   # Destination Finder
-  # todo: Destination Finder
+  # todo: Destination Finder - same path/endpoint as Lead Price Calendar
 
   # Bargain Finder Max
   # todo: Bargain Finder Max
@@ -306,7 +306,84 @@ paths:
   # todo: Advanced Calendar
 
   # Seat Map (beta)
-  # todo: Seat Map (beta)
+  # todo: Seat Map (beta) - Timeout exception during testing
+  "/v4.0.0/book/flights/seatmaps":
+    post:
+      summary: Seat Map (beta)
+      description: "Returns seat map data and the exact prices for each paid seat."
+      tags:
+      - Air_Search
+      operationId: V4_0_0BookFlightsSeatmapsPost
+      produces:
+      - application/json; charset=utf-8
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "seatmaps"
+        - name: seatmaprequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              EnhancedSeatMapRQ:
+                type: object
+                properties:
+                  SeatMapQueryEnhanced:
+                    type: object
+                    properties:
+                      RequestType:
+                        type: string
+                      Flight:
+                        type: object
+                        properties:
+                          destination:
+                            type: string
+                          origin:
+                            type: string
+                          DepartureDate:
+                            type: object
+                            properties:
+                              content:
+                                type: string
+                          ArrivalDate:
+                            type: object
+                            properties:
+                              content:
+                                type: string
+                          Operating:
+                            type: object
+                            properties:
+                              carrier:
+                                type: string
+                              content:
+                                type: string
+                          Marketing:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                carrier:
+                                  type: string
+                                content:
+                                  type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/SeatMap"
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Flights To
   "/v1/shop/flights/cheapest/fares/{destination}":
@@ -1454,6 +1531,180 @@ definitions:
         type: array
         items:
           "$ref": "#/definitions/FareInfo"
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
+  # Seat Map (beta)
+  SeatMap:
+    title: SeatMap
+    type: object
+    properties:
+      EnhancedSeatMapRS:
+        type: object
+        properties:
+          ApplicationResults:
+            type: object
+            properties:
+              status:
+                type: string
+              Success:
+                type: array
+                items:
+                  type: object
+          SeatMap:
+            type: array
+            items:
+              type: object
+              properties:
+                changeOfGuageInd:
+                  type: boolean
+                Equipment:
+                  type: string
+                Flight:
+                  type: object
+                  properties:
+                    destination:
+                      type: string
+                    origin:
+                      type: string
+                    DepartureDate:
+                      type: object
+                      properties:
+                        localTime:
+                          type: string
+                        content:
+                          type: string
+                    Marketing:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          carrier:
+                            type: string
+                          content:
+                            type: string
+                Cabin:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      firstRow:
+                        type: number
+                      lastRow:
+                        type: number
+                      CabinClass:
+                        type: object
+                        properties:
+                          CabinType:
+                            type: string
+                          RBD:
+                            type: string
+                      Row:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            RowNumber:
+                              type: number
+                            RowFacility:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  Characteristics:
+                                    type: object
+                                    properties:
+                                      content:
+                                        type: string
+                                  Location:
+                                    type: object
+                                    properties:
+                                      content:
+                                        type: string
+                            Seat:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  occupiedInd:
+                                    type: boolean
+                                  inoperativeInd:
+                                    type: boolean
+                                  premiumInd:
+                                    type: boolean
+                                  chargableInd:
+                                    type: boolean
+                                  exitRowInd:
+                                    type: boolean
+                                  restrictedReclineInd:
+                                    type: boolean
+                                  noInfantInd:
+                                    type: boolean
+                                  Number:
+                                    type: string
+                                  Occupation:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        Detail:
+                                          type: object
+                                          properties:
+                                            content:
+                                              type: string
+                                  Limitations:
+                                    type: array
+                                    items:
+                                      type: object
+                                      properties:
+                                        Detail:
+                                          type: object
+                                          properties:
+                                            content:
+                                              type: string
+                                  Bilateral:
+                                    type: object
+                                    properties:
+                                      Characteristic:
+                                        type: array
+                                        items:
+                                          type: string
+                      Column:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            Column:
+                              type: string
+                            Characteristics:
+                              type: array
+                              items:
+                                type: string
+                PriceList:
+                  type: object
+                  properties:
+                    PriceTypeDetail:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                          Code:
+                            type: string
+                          Description:
+                            type: string
+                          SecondaryCode:
+                            type: object
+                            properties:
+                              content:
+                                type: string
+                TaxTable:
+                  type: array
+                  items:
+                    type: object
       Links:
         type: array
         items:
