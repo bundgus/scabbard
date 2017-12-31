@@ -755,7 +755,6 @@ paths:
         enum:
           - "Y"
           - "N"
-        description: "Valid values: 0 to 16, inclusive"
       responses:
         '200':
           description: successful operation
@@ -810,7 +809,56 @@ paths:
   # todo: Top Destinations (404 in io-docs interface, may not be working in test environment)
 
   # Low Fare History
-  # todo: Low Fare History
+  "/v1/historical/shop/flights/fares":
+    get:
+      summary: Low Fare History
+      description: "Returns each day of the past two weeks' lowest
+      published fares for a given city/date pair."
+      tags:
+      - Air_Intelligence
+      operationId: V1HistoricalShopFlightsFaresGet
+      produces:
+      - application/json
+      parameters:
+      - name: origin
+        in: query
+        required: true
+        type: string
+        description: "3-letter IATA code of the departure airport"
+      - name: destination
+        in: query
+        required: true
+        type: string
+        description: "3-letter IATA code of the arrival airport"
+      - name: departuredate
+        in: query
+        required: true
+        type: string
+        description: "Format: YYYY-MM-DD."
+      - name: returndate
+        in: query
+        required: true
+        type: string
+        description: "Format: YYYY-MM-DD."
+      - name: pointofsalecountry
+        in: query
+        required: false
+        type: string
+        description: "2-letter country code of the point of sale"
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+            # todo: define schema
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
 # Air Utility
   # Point of Sale Country Code Lookup
