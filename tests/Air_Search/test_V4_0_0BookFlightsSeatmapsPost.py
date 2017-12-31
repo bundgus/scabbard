@@ -1,7 +1,7 @@
 from scabbard import get_client
 import json
 
-# timeout exception occured during testing
+
 def test__v4_0_0_book_flights_seatmaps_post():
     client = get_client()
 
@@ -36,5 +36,4 @@ def test__v4_0_0_book_flights_seatmaps_post():
                                        mode='seatmaps'
                                        )\
         .result()
-    #assert 29 == len(seat_map['GetHotelChainInfoRS']['ApplicationResults']
-    #                 ['Success'][0]['timeStamp'])
+    assert 'Complete' == seat_map['EnhancedSeatMapRS']['ApplicationResults']['status']
