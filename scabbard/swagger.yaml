@@ -806,7 +806,7 @@ paths:
 
   # Top Destinations
   # "No results were found"
-  # todo: Top Destinations (404 in io-docs interface, may not be working in test environment)
+  # todo: Top Destinations (404 in Dev Studio io-docs interface, may not be working in test environment)
 
   # Low Fare History
   "/v1/historical/shop/flights/fares":
@@ -1741,13 +1741,117 @@ paths:
       - Authorization: []
 
   # Get Hotel Image
-  # todo: Get Hotel Image
+  "/v1.0.0/shop/hotels/image":
+    post:
+      summary: Get Hotel Image
+      description: ""
+      tags:
+      - Hotel
+      operationId: V1_0_0ShopHotelsImagePost
+      produces:
+      - application/json
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "image"
+        - name: gethotelimagerequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              GetHotelImageRQ:
+                type: object
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+          # todo: define schema
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Get Hotel List
-  # todo: Get Hotel List
+  "/v1.0.0/shop/hotels/list":
+    post:
+      summary: Get Hotel List
+      description: ""
+      tags:
+      - Hotel
+      operationId: V1_0_0ShopHotelsListPost
+      produces:
+      - application/json
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "list"
+        - name: gethotelslistrequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              GetHotelListRQ:
+                type: object
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+          # todo: define schema
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Get Hotel Media
-  # todo: Get Hotel Media
+  "/v1.0.0/shop/hotels/media":
+    post:
+      summary: Get Hotel Media
+      description: ""
+      tags:
+      - Hotel
+      operationId: V1_0_0ShopHotelsMediaPost
+      produces:
+      - application/json
+      parameters:
+        - name: gethotelsmediarequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              GetHotelMediaRQ:
+                type: object
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+          # todo: define schema
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
 definitions:
 # Air Search
