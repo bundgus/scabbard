@@ -707,7 +707,69 @@ paths:
       - Authorization: []
 
   # Fare Range
-  # todo: Fare Range
+  "/v1/historical/flights/fares":
+    get:
+      summary: Fare Range
+      description: "Heads up – this API is powered by the Travel Insight Engine.
+      For the full list of city pairs available in the test environment and in
+      production view the City Pairs Supplemental API.
+      Returns median, highest, and lowest published fares that were ticketed during
+      the previous 4 weeks."
+      tags:
+      - Air_Intelligence
+      operationId: V1HistoricalFlightsFaresGet
+      produces:
+      - application/json
+      parameters:
+      - name: origin
+        in: query
+        required: true
+        type: string
+        description: "3-letter IATA code of the departure airport"
+      - name: destination
+        in: query
+        required: true
+        type: string
+        description: "3-letter IATA code of the arrival airport"
+      - name: earliestdeparturedate
+        in: query
+        required: true
+        type: string
+        description: "Format: YYYY-MM-DD. The earliest date of departure in the range.
+        The date can be a maximum of 90 days in the future, including the day of the request."
+      - name: latestdeparturedate
+        in: query
+        required: true
+        type: string
+        description: "Format: YYYY-MM-DD. The latest date of departure in the range.
+        The date can be a maximum of 90 days in the future, including the day of the request."
+      - name: lengthofstay
+        in: query
+        required: true
+        type: number
+        description: "Valid values: 0 to 16, inclusive"
+      - name: excludelcc
+        in: query
+        required: false
+        type: string
+        enum:
+          - "Y"
+          - "N"
+        description: "Valid values: 0 to 16, inclusive"
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+            # todo: define schema
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Travel Seasonality
   "/v1/historical/flights/{destination}/seasonality":
@@ -745,7 +807,7 @@ paths:
 
   # Top Destinations
   # "No results were found"
-  # todo: Top Destinations (may not be working in test environment)
+  # todo: Top Destinations (404 in io-docs interface, may not be working in test environment)
 
   # Low Fare History
   # todo: Low Fare History
