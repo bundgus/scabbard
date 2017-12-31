@@ -1434,7 +1434,7 @@ paths:
   # Geo Autocomplete (beta)
   "/v1/lists/utilities/geoservices/autocomplete":
     get:
-      summary: Airline Lookup
+      summary: Geo Autocomplete
       description: "Returns a list of location predictions for text-based geographic
       search queries."
       tags:
