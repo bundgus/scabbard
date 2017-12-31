@@ -226,14 +226,23 @@ paths:
       - Authorization: []
 
   # Lead Price Calendar
+  # Destination Finder
+
   "/v2/shop/flights/fares":
     get:
-      summary: Lead Price Calendar
+      summary: Lead Price Calendar and Destination Finder
       description: "Heads up – this API is powered by the Travel Insight Engine.
       For the full list of city pairs available in the test environment and in
       production view the City Pairs Supplemental API.
+      Lead Price Calendar:
       Finds the lowest nonstop fare and the lowest overall fare on future dates of
-      travel."
+      travel.
+      Destination Finder:
+      Finds the lowest nonstop fare and the lowest overall fare to many airports.
+      (1) Use departuredate and returndate for a single set of roundtrip travel dates,
+      (2) Use one or more values in lengthofstay, without any dates, and
+      (3) Use one or more values in lengthofstay with a range of departure dates in
+      earliestdeparturedate and latestdeparturedate. Origin is always required."
       tags:
       - Air_Search
       operationId: V2ShopFlightsFaresGet
@@ -247,19 +256,59 @@ paths:
         description: 3-letter IATA code of the departure airport
       - name: destination
         in: query
-        required: true
+        required: false
         type: string
         description: 3-letter IATA code of the arrival airport
       - name: lengthofstay
         in: query
-        required: true
-        type: string
+        required: false
+        type: number
         description: "Duration of trip (days). Values 0-16. Format : X,Y,Z. Max 5 values allowed."
       - name: departuredate
         in: query
         required: false
         type: string
-        description: "Date of departure, Format: YYYY-MM-DD"
+        description: "Format: YYYY-MM-DD"
+      - name: returndate
+        in: query
+        required: false
+        type: string
+        description: "Format: YYYY-MM-DD"
+      - name: earliestdeparturedate
+        in: query
+        required: false
+        type: string
+        description: "Format: YYYY-MM-DD. The earliest date of departure in the range.
+        The date can be a maximum of 90 days in the future, including the day of the request."
+      - name: latestdeparturedate
+        in: query
+        required: false
+        type: string
+        description: "Format: YYYY-MM-DD. The latest date of departure in the range.
+        The date can be a maximum of 90 days in the future, including the day of the request."
+      - name: location
+        in: query
+        required: false
+        type: string
+        description: "2 letter ISO country code"
+      - name: theme
+        in: query
+        required: false
+        type: string
+        enum:
+          - "BEACH"
+          - "CARIBBEAN"
+          - "DISNEY"
+          - "GAMBLING"
+          - "HISTORIC"
+          - "MOUNTAINS"
+          - "NATIONAL-PARKS"
+          - "OUTDOORS"
+          - "ROMANTIC"
+          - "SHOPPING"
+          - "SKIING"
+          - "THEME-PARK"
+        description: "A travel theme to filter a list of destinations"
       - name: minfare
         in: query
         required: false
@@ -270,6 +319,30 @@ paths:
         required: false
         type: string
         description: "Maximum overall lead fare"
+      - name: pricepermile
+        in: query
+        required: false
+        type: number
+        description: "Maximum price per mile. Retrieves only lead fares with a price per mile less than or equal to
+        this number."
+      - name: region
+        in: query
+        required: false
+        type: string
+        enum:
+        - Africa
+        - Asia Pacific
+        - Europe
+        - Latin America
+        - Middle East
+        - North America
+        description: "Retrieves destination airport codes that are associated with the specified region"
+      - name: topdestinations
+        in: query
+        required: false
+        type: number
+        description: "Limit results to a specific number of most frequently booked destinations.
+        Valid values: 1 to 50, inclusive"
       - name: pointofsalecountry
         in: query
         required: false
@@ -290,9 +363,6 @@ paths:
       security:
       - Authorization: []
 
-  # Destination Finder
-  # todo: Destination Finder - same path/endpoint as Lead Price Calendar
-
   # Bargain Finder Max
   # todo: Bargain Finder Max
 
@@ -303,7 +373,7 @@ paths:
   # todo: Bargain Finder Max Alternate Date
 
   # Advanced Calendar
-  # todo: Advanced Calendar
+  # todo: Advanced Calendar - "This response version is deprecated and will be decommissioned once a newer version is released."
 
   # Seat Map (beta)
   # todo: Seat Map (beta) - Timeout exception during testing
@@ -1361,8 +1431,9 @@ definitions:
                               properties:
                                 CurrencyCode:
                                   type: string
-                                Amount:
-                                  type: number
+                                # inconsistent type varies from number to string
+                                #Amount:
+                                #  type: string
                             Taxes:
                               type: object
                               properties:
@@ -1463,8 +1534,9 @@ definitions:
                           type: string
                         DecimalPlaces:
                           type: number
-                        Amount:
-                          type: number
+                        # inconsistent type varies from number to string
+                        #Amount:
+                        #  type: string
                     Taxes:
                       type: object
                       properties:
@@ -1619,10 +1691,7 @@ definitions:
                                       content:
                                         type: string
                                   Location:
-                                    type: object
-                                    properties:
-                                      content:
-                                        type: string
+                                    type: string
                             Seat:
                               type: array
                               items:
