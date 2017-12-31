@@ -25,7 +25,6 @@ produces:
 paths:
 # Air Search
   # InstaFlights Search
-  # todo: InstaFlights Search
   "/v1/shop/flights":
     get:
       summary: InstaFlights Search
