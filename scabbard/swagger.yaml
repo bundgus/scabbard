@@ -1432,7 +1432,52 @@ paths:
       - Authorization: []
 
   # Geo Autocomplete (beta)
-  # todo: Geo Autocomplete (beta)
+  "/v1/lists/utilities/geoservices/autocomplete":
+    get:
+      summary: Airline Lookup
+      description: "Returns a list of location predictions for text-based geographic
+      search queries."
+      tags:
+      - Utility
+      operationId: V1ListsUtilitiesGeoservicesAutocompleteGet
+      produces:
+      - application/json
+      parameters:
+      - name: query
+        in: query
+        required: true
+        type: string
+        description: "The full word or substring to be autocompleted"
+      - name: category
+        in: query
+        required: false
+        type: string
+        enum:
+        - "AIR"
+        - "CITY"
+        - "RAIL"
+        description: "Retrieves places that are associated with this specified category.
+        Valid values: AIR, CITY, RAIL"
+      - name: limit
+        in: query
+        required: false
+        type: number
+        description: "The number of search results to return per category.
+        Default value: 5. Valid values: 1 to 30."
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+            # todo: define schema
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Geo Code
   "/v1/lists/utilities/geocode/locations":
