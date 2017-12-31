@@ -1598,7 +1598,6 @@ paths:
           type: string
           enum:
             - "chain"
-            - "application/json"
         - name: gethotelchaininforequest
           in: body
           required: true
@@ -1622,7 +1621,44 @@ paths:
       - Authorization: []
 
   # Get Hotel Content
-  # todo: Get Hotel Content
+  "/v1.0.0/shop/hotels/content":
+    post:
+      summary: Get Hotel Content
+      description: ""
+      tags:
+      - Hotel
+      operationId: V1_0_0ShopHotelsContentPost
+      produces:
+      - application/json
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "content"
+        - name: gethotelcontentrequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              GetHotelContentRQ:
+                type: object
+      responses:
+        '200':
+          description: successful operation
+          schema: {}
+          # todo: define schema
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Get Hotel Content Change
   # todo: Get Hotel Content Change
