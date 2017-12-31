@@ -3,7 +3,7 @@ info:
   version: 0.1.0
   title: Scabbard - Python Client for Sabre Dev Studio REST APIs
   description: "[Scabbard](https://github.com/bundgus/scabbard)
-  [Sabre Dev Studio](https://developer.sabre.com/io-docs) REST APIs."
+  [Sabre Dev Studio](https://developer.sabre.com/io-docs)"
   license:
     name: Sabre License
     url: https://developer.sabre.com/Terms_of_Use
@@ -26,6 +26,205 @@ paths:
 # Air Search
   # InstaFlights Search
   # todo: InstaFlights Search
+  "/v1/shop/flights":
+    get:
+      summary: InstaFlights Search
+      description: "Finds one-way or roundtrip flight itineraries (with fares) on future dates of travel
+      for a given origin/destination."
+      tags:
+      - Air_Search
+      operationId: V1ShopFlightsGet
+      produces:
+      - application/json
+      parameters:
+      - name: origin
+        in: query
+        required: true
+        type: string
+        description: "3-letter IATA code of the departure airport"
+      - name: destination
+        in: query
+        required: true
+        type: string
+        description: "3-letter IATA airport code or city code of the arrival airport"
+      - name: departuredate
+        in: query
+        required: true
+        type: string
+        description: "Format: YYYY-MM-DD"
+      - name: returndate
+        in: query
+        required: false
+        type: string
+        description: "Format: YYYY-MM-DD"
+      - name: includedcarriers
+        in: query
+        required: false
+        type: string
+        description: "List of IATA airline codes. Format: XX,YY,ZZ"
+      - name: excludedcarriers
+        in: query
+        required: false
+        type: string
+        description: "List of IATA airline codes. Format: XX,YY,ZZ"
+      - name: outboundflightstops
+        in: query
+        required: false
+        type: number
+        description: "Max number of flight connections. Values 0-99"
+      - name: includedconnectpoints
+        in: query
+        required: false
+        type: string
+        description: "List of 3 letter IATA airport codes. Format: XXX,YYY,ZZZ.
+        Max 3 airport codes allowed."
+      - name: excludedconnectpoints
+        in: query
+        required: false
+        type: string
+        description: "List of 3 letter IATA airport codes. Format: XXX,YYY,ZZZ.
+        Max 3 airport codes allowed."
+      - name: inboundflightstops
+        in: query
+        required: false
+        type: integer
+        description: "Max number of flight connections. Values 0-99"
+      - name: outboundstopduration
+        in: query
+        required: false
+        type: integer
+        description: "The sum of the total waiting time for all connections on an
+        outbound itinerary. Values 0-9999"
+      - name: inboundstopduration
+        in: query
+        required: false
+        type: integer
+        description: "The sum of the total waiting time for all connections on an
+        inbound itinerary. Values 0-9999"
+      - name: outbounddeparturewindow
+        in: query
+        required: false
+        type: string
+        description: "Time range during which a first outbound flight segment can
+        depart on the departure date. Format: HHMMHHMM"
+      - name: inbounddeparturewindow
+        in: query
+        required: false
+        type: string
+        description: "Time range during which a first inbound flight segment can
+        depart on the departure date. Format: HHMMHHMM"
+      - name: outboundarrivalwindow
+        in: query
+        required: false
+        type: string
+        description: "Time range during which a last outbound flight segment can
+        arrive, after the departure date. Format: HHMMHHMM"
+      - name: inboundarrivalwindow
+        in: query
+        required: false
+        type: string
+        description: "Time range during which a last inbound flight segment can
+        arrive on the return date. Format: HHMMHHMM"
+      - name: onlineitinerariesonly
+        in: query
+        required: false
+        type: string
+        enum:
+        - N
+        - Y
+        description: "An indicator to base the response on online or interline itineraries."
+      - name: minfare
+        in: query
+        required: false
+        type: string
+        description: "Minimum overall lead fare."
+      - name: maxfare
+        in: query
+        required: false
+        type: string
+        description: "Maximum overall lead fare."
+      - name: limit
+        in: query
+        required: false
+        type: number
+        description: "Limit the number of itineraries returned."
+      - name: offset
+        in: query
+        required: false
+        type: number
+        description: "Retrieves the itineraries that start with
+        the number in offset through the quantity in limit, inclusive."
+      - name: eticketsonly
+        in: query
+        required: false
+        type: string
+        enum:
+        - N
+        - Y
+        description: "An indicator to only retrieve itineraries that are e-ticket eligible."
+      - name: sortby
+        in: query
+        required: false
+        type: string
+        enum:
+        - departuretime
+        - totalfare
+        - elapsedtime
+        description: "Primary sort object in the response."
+      - name: order
+        in: query
+        required: false
+        type: string
+        enum:
+        - asc
+        - dsc
+        description: "Sorting order for the primary sortby."
+      - name: sortby2
+        in: query
+        required: false
+        type: string
+        enum:
+        - departuretime
+        - totalfare
+        - elapsedtime
+        description: "Secondary sort object in the response."
+      - name: order2
+        in: query
+        required: false
+        type: string
+        enum:
+        - asc
+        - dsc
+        description: "Sorting order for sortby2."
+      - name: pointofsalecountry
+        in: query
+        required: false
+        type: string
+        description: "2-letter country code of the point of sale"
+      - name: passengercount
+        in: query
+        required: false
+        type: number
+        description: "Valid values: 1 to 10, inclusive"
+      - name: view
+        in: query
+        required: false
+        type: string
+        description: "A Sabre response view definition"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/InstaFlightsSearch"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
 
   # Lead Price Calendar
   "/v2/shop/flights/fares":
@@ -930,6 +1129,319 @@ paths:
 
 definitions:
 # Air Search
+  # InstaFlights Search
+  InstaFlightsSearch:
+    title: InstaFlightsSearch
+    type: object
+    properties:
+      PricedItineraries:
+        type: array
+        items:
+          type: object
+          properties:
+            AirItinerary:
+              type: object
+              properties:
+                OriginDestinationOptions:
+                  type: object
+                  properties:
+                    OriginDestinationOption:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          FlightSegment:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                DepartureAirport:
+                                  type: object
+                                  properties:
+                                    LocationCode:
+                                      type: string
+                                ArrivalAirport:
+                                  type: object
+                                  properties:
+                                    LocationCode:
+                                      type: string
+                                MarketingAirline:
+                                  type: object
+                                  properties:
+                                    Code:
+                                      type: string
+                                ArrivalTimeZone:
+                                  type: object
+                                  properties:
+                                    GMTOffset:
+                                      type: number
+                                TPA_Extensions:
+                                  type: object
+                                  properties:
+                                    eTicket:
+                                      type: object
+                                      properties:
+                                        Ind:
+                                          type: boolean
+                                StopQuantity:
+                                  type: number
+                                ElapsedTime:
+                                  type: number
+                                ResBookDesigCode:
+                                  type: string
+                                MarriagGrp:
+                                  type: number
+                                Equipment:
+                                  type: object
+                                  # this value is inconsistently represented as a string or a number
+                                  #properties:
+                                  #  AirEquipType:
+                                  #    type: number
+                                DepartureDateTime:
+                                  type: string
+                                ArrivalDateTime:
+                                  type: string
+                                FlightNumber:
+                                  type: number
+                                OntimePerformance:
+                                  type: object
+                                  properties:
+                                    Level:
+                                      type: number
+                                OperatingAirline:
+                                  type: object
+                                  properties:
+                                    FlightNumber:
+                                      type: number
+                                    Code:
+                                      type: string
+                                DepartureTimeZone:
+                                  type: object
+                                  properties:
+                                    GMTOffset:
+                                      type: number
+                          ElapsedTime:
+                            type: number
+                DirectionInd:
+                  type: string
+            TPA_Extensions:
+              type: object
+              properties:
+                ValidatingCarrier:
+                  type: object
+                  properties:
+                    Code:
+                      type: string
+            SequenceNumber:
+              type: number
+            AirItineraryPricingInfo:
+              type: object
+              properties:
+                PTC_FareBreakdowns:
+                  type: object
+                  properties:
+                    PTC_FareBreakdown:
+                      type: object
+                      properties:
+                        FareBasisCodes:
+                          type: object
+                          properties:
+                            FareBasisCode:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  BookingCode:
+                                    type: string
+                                  DepartureAirportCode:
+                                    type: string
+                                  AvailabilityBreak:
+                                    type: boolean
+                                  ArrivalAirportCode:
+                                    type: string
+                                  Content:
+                                    type: string
+                        PassengerTypeQuantity:
+                          type: object
+                          properties:
+                            Quantity:
+                              type: number
+                            Code:
+                              type: string
+                        PassengerFare:
+                          type: object
+                          properties:
+                            FareConstruction:
+                              type: object
+                              properties:
+                                CurrencyCode:
+                                  type: string
+                                DecimalPlaces:
+                                  type: number
+                                Amount:
+                                  type: number
+                            TotalFare:
+                              type: object
+                              properties:
+                                CurrencyCode:
+                                  type: string
+                                Amount:
+                                  type: number
+                            Taxes:
+                              type: object
+                              properties:
+                                TotalTax:
+                                  type: object
+                                  properties:
+                                    CurrencyCode:
+                                      type: string
+                                    DecimalPlaces:
+                                      type: number
+                                    # inconsistent type varies from number to string
+                                    #Amount:
+                                      # type: string
+                                Tax:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      CurrencyCode:
+                                        type: string
+                                      DecimalPlaces:
+                                        type: number
+                                      TaxCode:
+                                        type: string
+                                      # inconsistent type varies from number to string
+                                      #Amount:
+                                      #  type: string
+                            BaseFare:
+                              type: object
+                              properties:
+                                CurrencyCode:
+                                  type: string
+                                Amount:
+                                  type: number
+                            EquivFare:
+                              type: object
+                              properties:
+                                CurrencyCode:
+                                  type: string
+                                DecimalPlaces:
+                                  type: number
+                                Amount:
+                                  type: number
+                        Endorsements:
+                          type: object
+                          properties:
+                            NonRefundableIndicator:
+                              type: boolean
+                FareInfos:
+                  type: object
+                  properties:
+                    FareInfo:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          TPA_Extensions:
+                            type: object
+                            properties:
+                              Cabin:
+                                type: object
+                                properties:
+                                  Cabin:
+                                    type: string
+                              SeatsRemaining:
+                                type: object
+                                properties:
+                                  BelowMin:
+                                    type: boolean
+                                  Number:
+                                    type: number
+                              FareReference:
+                                type: string
+                TPA_Extensions:
+                  type: object
+                  properties:
+                    DivideInParty:
+                      type: object
+                      properties:
+                        Indicator:
+                          type: boolean
+                ItinTotalFare:
+                  type: object
+                  properties:
+                    FareConstruction:
+                      type: object
+                      properties:
+                        CurrencyCode:
+                          type: string
+                        DecimalPlaces:
+                          type: number
+                        Amount:
+                          type: number
+                    TotalFare:
+                      type: object
+                      properties:
+                        CurrencyCode:
+                          type: string
+                        DecimalPlaces:
+                          type: number
+                        Amount:
+                          type: number
+                    Taxes:
+                      type: object
+                      properties:
+                        Tax:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              CurrencyCode:
+                                type: string
+                              DecimalPlaces:
+                                type: number
+                              TaxCode:
+                                type: string
+                              # inconsistent type varies from number to string
+                              #Amount:
+                              #  type: string
+                    BaseFare:
+                      type: object
+                      properties:
+                        CurrencyCode:
+                          type: string
+                        DecimalPlaces:
+                          type: number
+                        Amount:
+                          type: number
+                    EquivFare:
+                      type: object
+                      properties:
+                        CurrencyCode:
+                          type: string
+                        DecimalPlaces:
+                          type: number
+                        Amount:
+                          type: number
+            TicketingInfo:
+              type: object
+              properties:
+                TicketType:
+                  type: string
+      ReturnDateTime:
+        type: string
+      DepartureDateTime:
+        type: string
+      DestinationLocation:
+        type: string
+      OriginLocation:
+        type: string
+      Links:
+        type: array
+        items:
+          "$ref": "#/definitions/Link"
+
   # Lead Price Calendar
   LeadPriceCalendar:
     title: LeadPriceCalendar

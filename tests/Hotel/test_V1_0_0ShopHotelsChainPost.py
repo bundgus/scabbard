@@ -14,5 +14,3 @@ def test__v1_0_0_shop_hotels_chain_post():
         .result()
     assert 29 == len(hotel_chains['GetHotelChainInfoRS']['ApplicationResults']
                      ['Success'][0]['timeStamp'])
-    print()
-    print(hotel_chains['GetHotelChainInfoRS']['ApplicationResults']['Success'][0]['timeStamp'])

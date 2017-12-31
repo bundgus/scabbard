@@ -25,6 +25,5 @@ def test__v2_4_0_shop_cars_post():
                             )\
         .result()
     assert 5 == len(available_vehicles['OTA_VehAvailRateRS']['Version'])
-    print()
-    print(available_vehicles['OTA_VehAvailRateRS']['Version'])
+
 
