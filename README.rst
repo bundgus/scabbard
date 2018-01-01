@@ -19,8 +19,8 @@ You can begin to interact with the Sabre Dev Studio APIs with as few as 3 lines 
 A scabbard is a sheath for holding a sword, such as a sabre - https://en.wikipedia.org/wiki/Scabbard
 
 .. image:: https://upload.wikimedia.org/wikipedia/commons/a/af/Arms_and_Armor.jpg
-   :height: 340 px
-   :width: 1024 px
+   :height: 170 px
+   :width: 512 px
    :scale: 50 %
    :alt: Princely Mughal sabre with jewelled scabbard
    :align: left
