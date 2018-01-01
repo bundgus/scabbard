@@ -25,6 +25,12 @@ A scabbard is a sheath for holding a sword, such as a sabre - https://en.wikiped
    :alt: Princely Mughal sabre with jewelled scabbard
    :align: left
 
+Features
+-----
+
+Defined Scabbard REST endpoints can be reviewed in the SwaggerUI:
+    https://bundgus.github.io/scabbard/SwaggerUI/index.html
+
 Disclaimer
 -----
 This Python library is created and maintained by Mark Bundgus and is not associated with
