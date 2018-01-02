@@ -90,8 +90,16 @@
             
               <!-- Local TOC -->
               <div class="local-toc"><ul>
-<li><a class="reference internal" href="#">Welcome to Scabbard’s documentation!</a></li>
-<li><a class="reference internal" href="#indices-and-tables">Indices and tables</a></li>
+<li><a class="reference internal" href="#">Welcome to Scabbard’s documentation!</a><ul>
+<li><a class="reference internal" href="#about">About</a></li>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#disclaimer">Disclaimer</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#getting-started">Getting Started</a></li>
+<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#license">License</a></li>
+</ul>
+</li>
 </ul>
 </div>
             
@@ -159,14 +167,144 @@
 <h1>Welcome to Scabbard’s documentation!<a class="headerlink" href="#welcome-to-scabbard-s-documentation" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<div class="section" id="about">
+<h2>About<a class="headerlink" href="#about" title="Permalink to this headline">¶</a></h2>
+<p>Scabbard is a Pythonic client for the Sabre Dev Studio REST APIs.  With Scabbard, it
+is not necessary to create extensive low-level boilerplate code before you can use each API call.
+You can begin to interact with the Sabre Dev Studio APIs with as few as 3 lines of code.</p>
+<p>A scabbard is a sheath for holding a sword, such as a sabre - <a class="reference external" href="https://en.wikipedia.org/wiki/Scabbard">https://en.wikipedia.org/wiki/Scabbard</a></p>
+<a class="reference internal image-reference" href="https://upload.wikimedia.org/wikipedia/commons/a/af/Arms_and_Armor.jpg"><img alt="Princely Mughal sabre with jewelled scabbard" src="https://upload.wikimedia.org/wikipedia/commons/a/af/Arms_and_Armor.jpg" style="width: 256.0px; height: 85.0px;" /></a>
 </div>
-<div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
-</ul>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Defined Scabbard REST endpoints can be reviewed in the SwaggerUI:</dt>
+<dd><a class="reference external" href="https://bundgus.github.io/scabbard/SwaggerUI/index.html">https://bundgus.github.io/scabbard/SwaggerUI/index.html</a></dd>
+</dl>
+</div>
+<div class="section" id="disclaimer">
+<h2>Disclaimer<a class="headerlink" href="#disclaimer" title="Permalink to this headline">¶</a></h2>
+<p>This Python library is created and maintained by Mark Bundgus and is not associated with
+nor endorsed by Sabre. Therefore Sabre has no responsibilities or liabilities in relation
+to the use of this code.</p>
+</div>
+<div class="section" id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Sabre Dev Studio API Documentation:</dt>
+<dd><a class="reference external" href="https://developer.sabre.com/docs/read/Home">https://developer.sabre.com/docs/read/Home</a></dd>
+<dt>Sabre Dev Studio REST API documentation:</dt>
+<dd><p class="first"><a class="reference external" href="https://developer.sabre.com/docs/read/rest_apis/">https://developer.sabre.com/docs/read/rest_apis/</a></p>
+<p class="last"><a class="reference external" href="https://developer.sabre.com/io-docs">https://developer.sabre.com/io-docs</a></p>
+</dd>
+<dt>Scabbard docs:</dt>
+<dd><a class="reference external" href="https://bundgus.github.io/scabbard/html/">https://bundgus.github.io/scabbard/html/</a></dd>
+<dt>Scabbard SwaggerUI:</dt>
+<dd><a class="reference external" href="https://bundgus.github.io/scabbard/SwaggerUI/index.html">https://bundgus.github.io/scabbard/SwaggerUI/index.html</a></dd>
+<dt>Scabbard GitHub Home:</dt>
+<dd><a class="reference external" href="https://github.com/bundgus/scabbard">https://github.com/bundgus/scabbard</a></dd>
+<dt>Scabbard PyPi Home:</dt>
+<dd><a class="reference external" href="https://pypi.python.org/pypi/scabbard">https://pypi.python.org/pypi/scabbard</a></dd>
+</dl>
+</div>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>(1)
+You can register for a free Sabre Dev Studio account at the following URL:</p>
+<p><a class="reference external" href="https://developer.sabre.com/apps/mykeys">https://developer.sabre.com/apps/mykeys</a></p>
+<p>(2)
+Install the scabbard library with pip.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install scabbard
+</pre></div>
+</div>
+<p>(3)
+A file called api_connect_parameters.json must exist in the directory
+in which python is run, with your Sabre Dev Studio clientID and clientSecret credentials.</p>
+<p>api_connect_parameters.json</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span></span><span class="p">{</span>
+  <span class="s2">&quot;clientId&quot;</span><span class="o">:</span> <span class="s2">&quot;zzzzzzzzzzzzzzzz&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;clientSecret&quot;</span><span class="o">:</span> <span class="s2">&quot;xxxxxxxx&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;environment&quot;</span><span class="o">:</span> <span class="s2">&quot;https://api.test.sabre.com&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;group&quot;</span><span class="o">:</span> <span class="s2">&quot;DEVCENTER&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;domain&quot;</span><span class="o">:</span> <span class="s2">&quot;EXT&quot;</span><span class="p">,</span>
+  <span class="s2">&quot;formatVersion&quot;</span><span class="o">:</span> <span class="s2">&quot;V1&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>(4)
+Run code to exercise the API.  For example:</p>
+<p>example_V1ListsSupportedCountriesGet.py</p>
+<div class="highlight-Python"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scabbard</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">scabbard</span><span class="o">.</span><span class="n">get_client</span><span class="p">()</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">Air_Utility</span><span class="o">.</span><span class="n">V1ListsSupportedCountriesGet</span><span class="p">(</span><span class="n">pointofsalecountry</span><span class="o">=</span><span class="s1">&#39;NZ&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;PointOfSale&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">countries</span><span class="o">.</span><span class="n">PointOfSale</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;OriginCountries&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">countries</span><span class="o">.</span><span class="n">OriginCountries</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">CountryCode</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">CountryName</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;DestinationCountries&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">countries</span><span class="o">.</span><span class="n">DestinationCountries</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">CountryCode</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">CountryName</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Links&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">l</span> <span class="ow">in</span> <span class="n">countries</span><span class="o">.</span><span class="n">Links</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">rel</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">l</span><span class="o">.</span><span class="n">href</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(5)
+Run your python example.</p>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ python example_V1ListsSupportedCountriesGet.py
+
+PointOfSale
+NZ
+OriginCountries
+AU Australia
+ID Indonesia
+IE Ireland
+NZ New Zealand
+TH Thailand
+GB United Kingdom
+DestinationCountries
+AU Australia
+FR France
+DE Germany
+HK Hong Kong
+IN India
+ID Indonesia
+IE Ireland
+MY Malaysia
+NL Netherlands
+NZ New Zealand
+PH Philippines
+SG Singapore
+TH Thailand
+GB United Kingdom
+US United States
+Links
+self
+https://api.test.sabre.com/v1/lists/supported/countries?pointofsalecountry<span class="o">=</span>NZ
+linkTemplate
+https://api.test.sabre.com/v1/lists/supported/countries?pointofsalecountry<span class="o">=</span>&lt;pointofsalecountry&gt;
+</pre></div>
+</div>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash"><div class="highlight"><pre><span></span>$ pip install scabbard
+</pre></div>
+</div>
+</div>
+<div class="section" id="license">
+<h2>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2018, Mark Bundgus. All rights reserved.</p>
+<p>Scabbard is licensed with a <a class="reference external" href="http://opensource.org/licenses/BSD-3-Clause">BSD 3-Clause
+License</a>.</p>
+</div>
 </div>
 
 

@@ -24,7 +24,7 @@ A scabbard is a sheath for holding a sword, such as a sabre - https://en.wikiped
    :width: 512 px
    :scale: 50 %
    :alt: Princely Mughal sabre with jewelled scabbard
-   :align: left
+
 
 Features
 -----
@@ -176,10 +176,3 @@ Copyright (c) 2018, Mark Bundgus. All rights reserved.
 
 Scabbard is licensed with a `BSD 3-Clause
 License <http://opensource.org/licenses/BSD-3-Clause>`__.
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
