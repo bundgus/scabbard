@@ -26,13 +26,13 @@ A scabbard is a sheath for holding a sword, such as a sabre - https://en.wikiped
    :alt: Princely Mughal sabre with jewelled scabbard
 
 Features
------
+--------
 
 Defined Scabbard REST endpoints can be reviewed in the SwaggerUI:
     https://bundgus.github.io/scabbard/SwaggerUI/index.html
 
 Documentation
------
+-------------
 
 Sabre Dev Studio API Documentation:
     https://developer.sabre.com/docs/read/Home
@@ -56,7 +56,7 @@ Scabbard PyPi Home:
 
 
 Getting Started
--------------
+---------------
 
 (1)
 You can register for a free Sabre Dev Studio account at the following URL:
@@ -166,7 +166,8 @@ License
 -------
 
 Copyright (c) 2018, Mark Bundgus. All rights reserved.
-* not associated with nor endorsed by Sabre
+
+* not a Sabre provided or supported software library
 * all referenced Sabre content and services are the property of Sabre
 
 Scabbard is licensed with a `BSD 3-Clause

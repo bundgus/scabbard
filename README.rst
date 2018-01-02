@@ -31,12 +31,6 @@ Features
 Defined Scabbard REST endpoints can be reviewed in the SwaggerUI:
     https://bundgus.github.io/scabbard/SwaggerUI/index.html
 
-Disclaimer
------
-This Python library is created and maintained by Mark Bundgus and is not associated with
-nor endorsed by Sabre. Therefore Sabre has no responsibilities or liabilities in relation
-to the use of this code.
-
 Documentation
 -----
 
@@ -62,7 +56,7 @@ Scabbard PyPi Home:
 
 
 Getting Started
--------------
+-----
 
 (1)
 You can register for a free Sabre Dev Studio account at the following URL:
@@ -162,7 +156,7 @@ Run your python example.
 
 
 Installation
-------------
+-----
 
 .. code-block:: bash
 
@@ -172,6 +166,9 @@ License
 -------
 
 Copyright (c) 2018, Mark Bundgus. All rights reserved.
+* not a Sabre provided or supported software library
+* all referenced Sabre content and services are the property of Sabre
 
 Scabbard is licensed with a `BSD 3-Clause
 License <http://opensource.org/licenses/BSD-3-Clause>`__.
+
