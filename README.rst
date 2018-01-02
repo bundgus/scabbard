@@ -49,7 +49,7 @@ Sabre Dev Studio REST API documentation:
     https://developer.sabre.com/io-docs
 
 Scabbard docs:
-    https://bundgus.github.io/scabbard/
+    https://bundgus.github.io/scabbard/html/
 
 Scabbard SwaggerUI:
     https://bundgus.github.io/scabbard/SwaggerUI/index.html
