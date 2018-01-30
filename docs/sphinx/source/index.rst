@@ -162,6 +162,13 @@ Installation
 
     $ pip install scabbard
 
+Run Pytests
+-----------
+
+.. code-block:: bash
+
+    $ python -m pytest
+
 License
 -------
 
