@@ -1853,6 +1853,53 @@ paths:
       security:
       - Authorization: []
 
+# MDM
+
+  # Get Master Geography_Air Service Location
+
+  "/v1/mdm/MasterGeography/ECAirSvcLocation":
+    get:
+      summary: Get Master Geography_Air Service Location
+      description: ""
+      tags:
+      - MDM
+      operationId: V1_mdmMasterGeographyECAirSvcLocationGet
+      produces:
+      - application/json
+      parameters:
+      - name: page
+        in: query
+        required: false
+        type: integer
+        description: "Page number of the desired page to be returned"
+      - name: size
+        in: query
+        required: false
+        type: integer
+        description: "Parameter used to specify number of items (records) to be returned per page"
+      - name: embedded
+        in: query
+        required: false
+        type: boolean
+        description: "True: External objects referenced by a record are embedded within the response. All reference data is returned.  False: Only the id (identifier field) of external objects are returned within the response,and a “Ref” suffix is appended to the object name (e.g. “SourceRef”)"
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            "$ref": "#/definitions/ECAirSvcLocation"
+          examples: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+        '403':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+
 definitions:
 # Air Search
   # InstaFlights Search
@@ -2899,7 +2946,7 @@ definitions:
 # Hotel
   # Get Hotel Chain Info
   HotelChainInfo:
-    title: AirlineAlliances
+    title: HotelChainInfo
     type: object
     properties:
       GetHotelChainInfoRS:
@@ -3097,3 +3144,18 @@ definitions:
         type: array
         items:
           "$ref": "#/definitions/Link"
+  ECAirSvcLocation:
+    title: ECAirSvcLocation
+    type: object
+    properties:
+      Pagination:
+        type: object
+        properties:
+          firstPage:
+            type: string
+          previousPage:
+            type: string
+          nextPage:
+            type: string
+          lastPage:
+            type: string
