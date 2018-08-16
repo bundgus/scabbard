@@ -1,0 +1,45 @@
+install Anaconda Python
+install Pycharm
+clone github repository (this will create a new pycharm project)
+create new conda environment and set this as the default for the new project
+open anaconda prompt
+type: activate <name of your new conda environment>
+run:  pip install -r requirements.txt  (this should install all the dependent packages needed by scabbard into your conda environment)
+use the api_connection_parameters.json.example to create a api_connection_parameters.json file with the clientId and clientSecret values from developer.sabre.com (in the same root directory as the example)
+run scabbard_example in the root directory using Pycharm or from the command line:
+
+	C:\Users\...\github\scabbard\venv\Scripts\python.exe C:/Users/.../github/scabbard/example_scabbard.py
+	PointOfSale
+	NZ
+	OriginCountries
+	AU Australia
+	ID Indonesia
+	IE Ireland
+	NZ New Zealand
+	TH Thailand
+	GB United Kingdom
+	DestinationCountries
+	AU Australia
+	FR France
+	DE Germany
+	HK Hong Kong
+	IN India
+	ID Indonesia
+	IE Ireland
+	MY Malaysia
+	NL Netherlands
+	NZ New Zealand
+	PH Philippines
+	SG Singapore
+	TH Thailand
+	GB United Kingdom
+	US United States
+	Links
+	self
+	https://api.test.sabre.com/v1/lists/supported/countries?pointofsalecountry=NZ
+	linkTemplate
+	https://api.test.sabre.com/v1/lists/supported/countries?pointofsalecountry=<pointofsalecountry>
+
+	Process finished with exit code 0
+
+run pytest in the project root directory:  (venv) C:\Users\...\github\scabbard>pytest
