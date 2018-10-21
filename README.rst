@@ -1,4 +1,4 @@
-.. image:: https://img.shields.io/badge/pypi-0.1.0-blue.svg
+.. image:: https://img.shields.io/badge/pypi-0.2.0-blue.svg
     :target: https://pypi.python.org/pypi/bravado/
     :alt: PyPi version
 

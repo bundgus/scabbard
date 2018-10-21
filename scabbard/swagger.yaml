@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  version: 0.1.0
+  version: 0.2.0
   title: Scabbard - Python Client for Sabre Dev Studio REST APIs
   description: "[Scabbard](https://github.com/bundgus/scabbard)
   [Sabre Dev Studio](https://developer.sabre.com/io-docs)"
@@ -2051,8 +2051,9 @@ definitions:
                                   type: string
                                 DecimalPlaces:
                                   type: number
-                                Amount:
-                                  type: number
+                                # inconsistent type varies from number to string
+                                #Amount:
+                                #  type: string
                             TotalFare:
                               type: object
                               properties:
@@ -2093,8 +2094,9 @@ definitions:
                               properties:
                                 CurrencyCode:
                                   type: string
-                                Amount:
-                                  type: number
+                                # inconsistent type varies from number to string
+                                #Amount:
+                                #  type: number
                             EquivFare:
                               type: object
                               properties:
@@ -2102,8 +2104,9 @@ definitions:
                                   type: string
                                 DecimalPlaces:
                                   type: number
-                                Amount:
-                                  type: number
+                                # inconsistent type varies from number to string
+                                #Amount:
+                                #  type: number
                         Endorsements:
                           type: object
                           properties:
@@ -2152,8 +2155,9 @@ definitions:
                           type: string
                         DecimalPlaces:
                           type: number
-                        Amount:
-                          type: number
+                        # inconsistent type varies from number to string
+                        #Amount:
+                        #  type: number
                     TotalFare:
                       type: object
                       properties:
@@ -2188,8 +2192,9 @@ definitions:
                           type: string
                         DecimalPlaces:
                           type: number
-                        Amount:
-                          type: number
+                        # inconsistent type varies from number to string
+                        #Amount:
+                        #  type: number
                     EquivFare:
                       type: object
                       properties:
@@ -2197,8 +2202,9 @@ definitions:
                           type: string
                         DecimalPlaces:
                           type: number
-                        Amount:
-                          type: number
+                        # inconsistent type varies from number to string
+                        #Amount:
+                        #  type: number
             TicketingInfo:
               type: object
               properties:

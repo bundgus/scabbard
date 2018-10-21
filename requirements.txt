@@ -1,5 +1,7 @@
-bravado>=9.2.2
+bravado
 pytz
 iso8601
-requests>=2.18
+requests
 pytest
+twine
+wheel

@@ -1,17 +1,23 @@
 from scabbard import get_client
 import json
+import datetime
 
 
 def test__v2_4_0_shop_cars_post():
     client = get_client()
+
+    today = datetime.datetime.now()
+    pickup_datetime = (today + datetime.timedelta(days=10)).strftime("%m-%dT%H:%M")
+    return_datetime = (today + datetime.timedelta(days=11)).strftime("%m-%dT%H:%M")
+
 
     j = json.loads('''{
                             "OTA_VehAvailRateRQ": {
                               "VehAvailRQCore": {
                                 "QueryType": "Shop",
                                 "VehRentalCore": {
-                                  "PickUpDateTime": "04-07T09:00",
-                                  "ReturnDateTime": "04-08T11:00",
+                                  "PickUpDateTime": "''' + pickup_datetime + '''",
+                                  "ReturnDateTime": "''' + return_datetime + '''",
                                   "PickUpLocation": {
                                     "LocationCode": "DFW"
                                   }

@@ -1,9 +1,14 @@
 from scabbard import get_client
 import json
+import datetime
 
 
 def test__v1_0_0_shop_hotels_content_change_post():
     client = get_client()
+
+    today = datetime.datetime.now()
+    start_date = (today + datetime.timedelta(days=10)).strftime("%Y-%m-%d")
+    end_date = (today + datetime.timedelta(days=11)).strftime("%Y-%m-%d")
 
     j = json.loads('''{
 
@@ -11,9 +16,9 @@ def test__v1_0_0_shop_hotels_content_change_post():
                     
                         "ContentChangeRef": {
                     
-                          "StartDate": "2015-05-18",
+                          "StartDate": "''' + start_date + '''",
                     
-                          "EndDate": "2015-05-23"
+                          "EndDate": "''' + end_date + '''"
                     
                         }
                     
