@@ -1,9 +1,14 @@
 from scabbard import get_client
 import json
+import datetime
 
 
 def test__v3_4_0_shop_flights_post():
     client = get_client()
+
+    today = datetime.datetime.now()
+    departure1_datetime = (today + datetime.timedelta(days=10)).strftime("%Y-%m-%dT%H:%M:%S")
+    departure2_datetime = (today + datetime.timedelta(days=11)).strftime("%Y-%m-%dT%H:%M:%S")
 
     j = json.loads('''{
                      "OTA_AirLowFareSearchRQ": {
@@ -22,7 +27,7 @@ def test__v3_4_0_shop_flights_post():
                             },
                             "OriginDestinationInformation": [{
                               "RPH": "1",
-                               "DepartureDateTime": "2018-04-07T11:00:00",
+                               "DepartureDateTime": "''' + departure1_datetime + '''",
                                "OriginLocation": {
                                  "LocationCode": "DFW"
                              },
@@ -37,7 +42,7 @@ def test__v3_4_0_shop_flights_post():
                          },
                             {
                              "RPH": "2",
-                               "DepartureDateTime": "2018-04-08T11:00:00",
+                               "DepartureDateTime": "''' + departure2_datetime + '''",
                                "OriginLocation": {
                                  "LocationCode": "CDG"
                              },

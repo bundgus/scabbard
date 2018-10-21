@@ -1,9 +1,15 @@
 from scabbard import get_client
 import json
+import datetime
 
 
 def test__v4_0_0_book_flights_seatmaps_post():
     client = get_client()
+
+    today = datetime.datetime.now()
+    departure_date = (today + datetime.timedelta(days=10)).strftime("%Y-%m-%d")
+    arrival_date = (today + datetime.timedelta(days=10)).strftime("%Y-%m-%d")
+
 
     j = json.loads('''{
               "EnhancedSeatMapRQ": {
@@ -13,10 +19,10 @@ def test__v4_0_0_book_flights_seatmaps_post():
                     "destination": "EZE",
                     "origin": "DFW",
                   "DepartureDate": {
-                    "content": "2018-04-07"
+                    "content": "''' + departure_date + '''"
                   },
                   "ArrivalDate": {
-                    "content": "2018-04-08"
+                    "content": "''' + arrival_date + '''"
                   },
                   "Operating": {
                     "carrier": "AA",
