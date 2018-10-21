@@ -11,9 +11,9 @@ Scabbard Changelog
 Version History
 ===============
 
-1.1.0
+0.2.0
     * Update tests to use dynamic dates for services that require future dates.
     * Added stub tests for MDM services, set to ignored due to addition EPR security restrictions
 
-1.0.0
+0.1.0
     * Initial release.
