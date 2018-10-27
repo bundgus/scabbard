@@ -420,6 +420,63 @@ paths:
       security:
       - Authorization: []
 
+  # Bargain Finder Max 4.3.0
+  "/v4.3.0/shop/flights":
+    post:
+      summary: Bargain Finder Max
+      description: "Finds the lowest available priced itineraries based upon a travel date."
+      tags:
+      - Air_Search
+      operationId: V4_3_0ShopFlightsPost
+      produces:
+      - application/json
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          description: ""
+          type: string
+          enum:
+            - "live"
+        - name: limit
+          in: query
+          required: false
+          description: "The number of itineraries to retrieve per request"
+          type: string
+        - name: offset
+          in: query
+          required: false
+          description: "The starting position in the list of all itineraries
+          that meet the query criteria"
+          type: number
+        - name: view
+          in: query
+          required: false
+          description: "A Sabre response view definition"
+          type: string
+        - name: bargainfindermaxrequest
+          in: body
+          required: true
+          schema:
+            type: object
+            properties:
+              EnhancedSeatMapRQ:
+                type: object
+                # todo: define schema
+      responses:
+        '200':
+          description: successful operation
+          # todo: define schema
+          schema: {}
+        '400':
+          description: Invalid status value
+          schema: {}
+        '401':
+          description: You do not have necessary permissions for the resource
+          schema: {}
+      security:
+      - Authorization: []
+
   # Bargain Finder Max Alternate Airport Shop
   "/v3.4.0/shop/altairports/flights":
     post:

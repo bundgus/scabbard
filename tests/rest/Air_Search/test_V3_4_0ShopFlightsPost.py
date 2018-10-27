@@ -1,3 +1,4 @@
+# Bargain Finder Max (BFM)
 from scabbard import get_client
 import json
 import datetime
