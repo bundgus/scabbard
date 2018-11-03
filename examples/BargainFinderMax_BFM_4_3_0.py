@@ -2,14 +2,11 @@
 from scabbard import get_client
 import json
 import datetime
+import time
 
 
-def call_bfm(mode='live', limit=50, offset=1):
+def call_bfm(origin, destination, departure1_datetime, departure2_datetime, mode='live', limit=50, offset=1):
     client = get_client()
-
-    today = datetime.datetime.now()
-    departure1_datetime = (today + datetime.timedelta(days=10)).strftime("%Y-%m-%dT%H:%M:%S")
-    departure2_datetime = (today + datetime.timedelta(days=11)).strftime("%Y-%m-%dT%H:%M:%S")
 
     j = json.loads('''{
                      "OTA_AirLowFareSearchRQ": {
@@ -26,19 +23,19 @@ def call_bfm(mode='live', limit=50, offset=1):
 
                                "DepartureDateTime": "''' + departure1_datetime + '''",
                                "OriginLocation": {
-                                 "LocationCode": "DFW"
+                                 "LocationCode": "''' + origin + '''"
                              },
                                 "DestinationLocation": {
-                                    "LocationCode": "IAH"
+                                    "LocationCode": "''' + destination + '''"
                              }
                          },
                             {
                                "DepartureDateTime": "''' + departure2_datetime + '''",
                                "OriginLocation": {
-                                 "LocationCode": "IAH"
+                                 "LocationCode": "''' + destination + '''"
                              },
                                 "DestinationLocation": {
-                                    "LocationCode": "DFW"
+                                    "LocationCode": "''' + origin + '''"
                              }
                          }],
                             "TravelerInfoSummary": {
@@ -63,6 +60,39 @@ def call_bfm(mode='live', limit=50, offset=1):
     return itineraries
 
 
+def iterate_requests():
+    od_pairs = ('HNL-LAX', 'LAX-OGG', 'HNL-BOS', 'HNL-TYO', 'HNL-HND', 'HNL-NRT', 'HNL-SYD',
+                'LAX-HNL', 'OGG-LAX', 'BOS-HNL', 'TYO-HNL', 'HND-HNL', 'NRT-HNL', 'SYD-HNL')
+
+    today = datetime.datetime.now()
+    departure1_datetime = (today + datetime.timedelta(days=10)).strftime("%Y-%m-%dT%H:%M:%S")
+    departure2_datetime = (today + datetime.timedelta(days=11)).strftime("%Y-%m-%dT%H:%M:%S")
+
+    print('departure1_datetime', departure1_datetime)
+    print('departure2_datetime', departure2_datetime)
+
+    for i in range(10):
+        print('iteration:', i)
+        for od in od_pairs:
+
+            for attempt in range(10):
+                try:
+                    print(od[0:3], od[4:7])
+                    itins = call_bfm(od[0:3], od[4:7], departure1_datetime, departure2_datetime)  # , limit=1
+                    #print(print(json.dumps(itins)))  # , indent=4
+                    time.sleep(30)
+                except Exception as e:
+                    print(e)
+                    print('retrying')
+                    time.sleep(30)
+                else:
+                    break
+            else:
+                print('failed 10 times, skipping')
+
+    print('departure1_datetime', departure1_datetime)
+    print('departure2_datetime', departure2_datetime)
+
+
 if __name__ == "__main__":
-    itins = call_bfm(limit=1)
-    print(print(json.dumps(itins, indent=4)))
+    iterate_requests()
